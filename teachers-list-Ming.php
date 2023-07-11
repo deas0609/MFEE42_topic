@@ -7,12 +7,12 @@ $sqlTotal = "SELECT * FROM teachers"; //所有
 
 $resultTotal = $conn->query($sqlTotal);
 // $rows = $resultTotal->fetch_all(MYSQLI_ASSOC); //總數資料
-$rowsCount = $resultTotal->num_rows;  //總數
+$rowsTotalCount = $resultTotal->num_rows;  //總數
 
 $perPage = 5; //一頁幾個
 $StartItem = ($page - 1) * $perPage;
 
-$totalPage = ceil($rowsCount / $perPage);  //總頁數=總數目/一頁幾個 後無條件進位
+$totalPage = ceil($rowsTotalCount / $perPage);  //總頁數=總數目/一頁幾個 後無條件進位
 
 // print_r($result);
 // echo "<br>";
@@ -41,6 +41,13 @@ $rowPage=$resultPage->fetch_all(MYSQLI_ASSOC);
   <div class="container">
     <h2>講師列表</h2>
     
+    <div class="py-2 d-flex justify-content-between align-items-center">
+            <a class="btn btn-info" href="create-user.php">新增</a>
+            <div>
+                共 <?= $rowsTotalCount ?> 人, 第 <?= $page ?> 頁
+            </div>
+        </div>
+
     <table class="table table-bordered">
       <thead>
         <tr>
