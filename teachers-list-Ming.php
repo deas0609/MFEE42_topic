@@ -42,7 +42,7 @@ $rowPage=$resultPage->fetch_all(MYSQLI_ASSOC);
     <h2>講師列表</h2>
     
     <div class="py-2 d-flex justify-content-between align-items-center">
-            <a class="btn btn-info" href="create-user.php">新增</a>
+            <a class="btn btn-info" href="addTeacher-Ming.php">新增</a>
             <div>
                 共 <?= $rowsTotalCount ?> 人, 第 <?= $page ?> 頁
             </div>
