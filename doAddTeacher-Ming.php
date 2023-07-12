@@ -1,11 +1,21 @@
 <?php
 require_once("db_connect.php");
+
 if (!isset($_POST["name"]) || !isset($_POST["gender"]) || !isset($_POST["phone"]) || !isset($_POST["email"]) || !isset($_POST["expertise"]) || !isset($_POST["introduce"]) ) {
     die("請依正常管道進入");
+    
+   
 }
 
 if (empty($_POST["name"])) {
     die("請輸入姓名");
+    // $data=[
+    //     "status"=>0,
+    //     "message"=>"請輸入姓名"
+    // ];
+    // echo json_encode($data);
+    // exit;
+    
 }
 if (empty($_POST["gender"])) {
     die("請輸入性別");
@@ -23,6 +33,10 @@ if (empty($_POST["introduce"])) {
     die("請輸入介紹");
 }
 
+
+
+
+
 $name=$_POST["name"];
 $gender=$_POST["gender"];
 $phone=$_POST["phone"];
@@ -34,6 +48,8 @@ $expertise=$_POST["expertise"];
 
 
 
+// var_dump($_FILES["file"]);
+// exit;
 
 
 if ($_FILES["file"]["error"] == 0) {
@@ -42,7 +58,7 @@ if ($_FILES["file"]["error"] == 0) {
 
         echo "上傳成功, 檔名為" . $fileName;
 
-        $sql = "INSERT INTO product_images (product_id, name) VALUES ('$product_id', '$fileName')";
+        
 
         $sql="INSERT INTO teachers (name, gender,phone,email, introduce,expertise,photo) VALUES ('$name', '$gender','$phone','$email','$introduce','$expertise','$fileName')";
 // var_dump($_FILES["file"]);

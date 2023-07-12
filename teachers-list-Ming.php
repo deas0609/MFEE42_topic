@@ -52,7 +52,7 @@ $rowPage=$resultPage->fetch_all(MYSQLI_ASSOC);
       <thead>
         <tr>
           <th>id</th>
-          <th>姓名</th>
+          <th>名稱</th>
           <th>性別</th>
           <th>手機</th>
           <th>email</th>
@@ -75,7 +75,7 @@ $rowPage=$resultPage->fetch_all(MYSQLI_ASSOC);
             <td><?= $row["introduce"] ?></td>
             <td><img src="images/teachers/<?= $row["photo"] ?>" alt=""></td>
             <td>
-              <a href="" class="btn btn-info">編輯</a>
+              <a href="teacher-Ming.php?id=<?= $row["id"] ?>" class="btn btn-info">顯示</a>
 
             </td>
 
