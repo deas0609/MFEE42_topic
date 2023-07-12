@@ -1,14 +1,25 @@
 <?php
 require_once("db_connect.php");
 
-$sql = "SELECT * FROM teachers";
+$page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
-$result = $conn->query($sql);
-$rows = $result->fetch_all(MYSQLI_ASSOC);
+$sqlTotal = "SELECT * FROM teachers"; //所有
+
+$resultTotal = $conn->query($sqlTotal);
+// $rows = $resultTotal->fetch_all(MYSQLI_ASSOC); //總數資料
+$rowsTotalCount = $resultTotal->num_rows;  //總數
+
+$perPage = 5; //一頁幾個
+$StartItem = ($page - 1) * $perPage;
+
+$totalPage = ceil($rowsTotalCount / $perPage);  //總頁數=總數目/一頁幾個 後無條件進位
 
 // print_r($result);
 // echo "<br>";
 // print_r($rows);
+$sqlPage = "SELECT * FROM teachers  LIMIT $StartItem,$perPage"; //分頁
+$resultPage=$conn->query($sqlPage);
+$rowPage=$resultPage->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!doctype html>
@@ -29,6 +40,14 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 <body>
   <div class="container">
     <h2>講師列表</h2>
+    
+    <div class="py-2 d-flex justify-content-between align-items-center">
+            <a class="btn btn-info" href="addTeacher-Ming.php">新增</a>
+            <div>
+                共 <?= $rowsTotalCount ?> 人, 第 <?= $page ?> 頁
+            </div>
+        </div>
+
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -45,7 +64,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
       </thead>
 
       <tbody>
-        <?php foreach ($rows as $row) : ?>
+        <?php foreach ($rowPage as $row) : ?>
           <tr>
             <td><?= $row["id"] ?></td>
             <td><?= $row["name"] ?></td>
@@ -65,8 +84,31 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
       </tbody>
     </table>
-   
-    
+    <!-- 分頁 -->
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="teachers-list-Ming.php?page=1" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+
+        <?php for ($i = 1; $i <= $totalPage; $i++) : ?>
+
+          <li class="page-item">
+            <a class="page-link" href="teachers-list-Ming.php?page=<?= $i ?>"><?= $i ?></a>
+          </li>
+
+        <?php endfor; ?>
+
+        <li class="page-item">
+          <a class="page-link" href="teachers-list-Ming.php?page=<?=$totalPage?>" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
   </div>
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
