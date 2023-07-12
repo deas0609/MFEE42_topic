@@ -95,7 +95,7 @@ $rowPage=$resultPage->fetch_all(MYSQLI_ASSOC);
 
         <?php for ($i = 1; $i <= $totalPage; $i++) : ?>
 
-          <li class="page-item">
+          <li class="page-item <?php if ($i==$page)echo "active";?>">
             <a class="page-link" href="teachers-list-Ming.php?page=<?= $i ?>"><?= $i ?></a>
           </li>
 
