@@ -40,7 +40,20 @@ $rowPage=$resultPage->fetch_all(MYSQLI_ASSOC);
 <body>
   <div class="container">
     <h2>講師列表</h2>
-    
+    <!-- 搜尋 -->
+    <div class="py-2">
+            <form action="searenTeacher-Ming.php">
+                <div class="row gx-2">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="搜尋講師" name="name">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-info" type="submit">搜尋</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
     <div class="py-2 d-flex justify-content-between align-items-center">
             <a class="btn btn-info" href="addTeacher-Ming.php">新增</a>
             <div>
@@ -57,7 +70,7 @@ $rowPage=$resultPage->fetch_all(MYSQLI_ASSOC);
           <th>手機</th>
           <th>email</th>
           <th>專長</th>
-          <th>介紹</th>
+          <!-- <th>介紹</th> -->
           <th>圖片</th>
           <th></th>
         </tr>
@@ -72,7 +85,7 @@ $rowPage=$resultPage->fetch_all(MYSQLI_ASSOC);
             <td><?= $row["phone"] ?></td>
             <td><?= $row["email"] ?></td>
             <td><?= $row["expertise"] ?></td>
-            <td><?= $row["introduce"] ?></td>
+            <!-- <td><?= $row["introduce"] ?></td> -->
             <td><img src="images/teachers/<?= $row["photo"] ?>" alt=""></td>
             <td>
               <a href="teacher-Ming.php?id=<?= $row["id"] ?>" class="btn btn-info">顯示</a>
