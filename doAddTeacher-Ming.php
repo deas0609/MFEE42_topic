@@ -72,9 +72,9 @@ $phoneFormat="/^09\d{8}$/";
 // 為了判斷是否有人創建過帳號 抓取NAME的數據
 $sql="SELECT * FROM teachers WHERE name='$name'";
 $result=$conn->query($sql);
-$userCount=$result->num_rows;
+$teacherCount=$result->num_rows;
 
-if($userCount==1){
+if($teacherCount==1){
    echo "該名稱已有人使用";
    
     DelaytoAddTeacher(1);
