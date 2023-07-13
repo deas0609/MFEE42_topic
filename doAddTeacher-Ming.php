@@ -1,6 +1,12 @@
 <?php
 require_once("db_connect.php");
 
+function DelaytoAddTeacher($num){
+    header("Refresh:$num;url= addTeacher-Ming.php");
+    exit;
+}
+
+
 if (!isset($_POST["name"]) || !isset($_POST["gender"]) || !isset($_POST["phone"]) || !isset($_POST["email"]) || !isset($_POST["expertise"]) || !isset($_POST["introduce"]) ) {
     die("請依正常管道進入");
     
@@ -8,7 +14,10 @@ if (!isset($_POST["name"]) || !isset($_POST["gender"]) || !isset($_POST["phone"]
 }
 
 if (empty($_POST["name"])) {
-    die("請輸入姓名");
+    // die("請輸入姓名");
+    echo "請輸入姓名";
+
+    DelaytoAddTeacher(1);
     // $data=[
     //     "status"=>0,
     //     "message"=>"請輸入姓名"
@@ -18,20 +27,32 @@ if (empty($_POST["name"])) {
     
 }
 if (empty($_POST["gender"])) {
-    die("請輸入性別");
+    // die("請輸入性別");
+    echo "輸入性別";
+
+    DelaytoAddTeacher(1);
 }
 if (empty($_POST["phone"])) {
-    die("請輸入電話");
+    // die("請輸入電話");
+    echo "請輸入電話";
+    DelaytoAddTeacher(1);
 }
 if (empty($_POST["email"])) {
-    die("請輸入信箱");
+    // die("請輸入信箱");
+    echo "請輸入信箱";
+    DelaytoAddTeacher(1);
 }
 if (empty($_POST["expertise"])) {
-    die("請輸入專長");
+    // die("請輸入專長");
+    echo "請輸入專長";
+    DelaytoAddTeacher(1);
 }
 if (empty($_POST["introduce"])) {
-    die("請輸入介紹");
+    // die("請輸入介紹");
+    echo "請輸入介紹";
+    DelaytoAddTeacher(1);
 }
+
 
 
 
@@ -45,8 +66,34 @@ $introduce=$_POST["introduce"];
 // $photo=$_POST["photo"];
 $expertise=$_POST["expertise"];
 
+$emailFormat="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
+$phoneFormat="/^09\d{8}$/";
+
+// 為了判斷是否有人創建過帳號 抓取NAME的數據
+$sql="SELECT * FROM teachers WHERE name='$name'";
+$result=$conn->query($sql);
+$userCount=$result->num_rows;
+
+if($userCount==1){
+   echo "該名稱已有人使用";
+   
+    DelaytoAddTeacher(1);
+    //  die("該名稱已有人使用");
+    
+}
 
 
+if(!preg_match($emailFormat,$email)){
+    echo "信箱格式不正確";
+    DelaytoAddTeacher(1);
+    
+    // die("信箱格式不正確");
+}
+if(!preg_match($phoneFormat,$phone)){
+    echo "電話格式不正確";
+    DelaytoAddTeacher(1);
+    // die("電話格式不正確");
+}
 
 // var_dump($_FILES["file"]);
 // exit;
@@ -73,7 +120,11 @@ if ($_FILES["file"]["error"] == 0) {
     } else {
         echo "上傳失敗";
     }
-} else {
+} else if($_FILES["file"]["error"] == 4){
+// die("請上傳頭像");
+echo "請上傳頭像";
+DelaytoAddTeacher(1);
+}else{
     var_dump($_FILES["file"]["error"]);
 }
 ?>
