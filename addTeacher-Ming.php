@@ -36,7 +36,7 @@
 
 
 
-    <div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="container d-flex justify-content-center align-items-center">
         <div>
             <h1 class="text-center">新增講師</h1>
             <form action="doAddTeacher-Ming.php" method="post" enctype="multipart/form-data">
@@ -80,14 +80,21 @@
 
                 </div>
                 <div class="mb-2">
-                    <label for="">頭像</label>
-                    <input type="file" name="file" class="form-control" id="photo" required>
+                    <label for="photo">頭像</label>
+                    <!-- <input type="file" name="file" class="form-control" id="photo" required> -->
+                    <input type="file" id="photo" name="file" accept="image/*" class="form-control">
+                    <div class="my-2">
+                        <img id="previewImage" src="" class="d-none" alt="Preview Image">
+                    </div>
+
 
                 </div>
 
-
+                <div class="my-2">
+                    <div class="text-danger" id="error"></div>
+                </div>
                 <div class="d-flex justify-content-around">
-                    <button type="submit" class="btn btn-info mx-2">送出</button>
+                    <button  id="send" class="btn btn-info mx-2">送出</button>
                     <a class="btn btn-info mx-2" id="" href="teachers-list-Ming.php">取消</a>
                 </div>
 
@@ -102,7 +109,34 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
+    <script>
+        const photoFile = document.querySelector("#photo");
+        const image = document.getElementById("previewImage");
+        const send = document.querySelector("#send");
 
+
+        // 上傳圖預覽
+        photoFile.addEventListener("change", function() {
+            let file = event.target.files[0];
+            let reader = new FileReader();
+
+            if (file == null) {
+                image.classList.add("d-none");
+            } else {
+                reader.onload = function(event) {
+
+                    image.src = event.target.result;
+                    image.classList.remove("d-none");
+                };
+
+                reader.readAsDataURL(file);
+            }
+
+        });
+
+       
+       
+    </script>
 
 
 </body>

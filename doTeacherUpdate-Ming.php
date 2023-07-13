@@ -1,16 +1,30 @@
 <?php
-require_once("db_connect.php");
-
-function DelaytoAddTeacher($num){
-    header("Refresh:$num;url= addTeacher-Ming.php");
-    exit;
-}
-
 
 if (!isset($_POST["name"]) || !isset($_POST["gender"]) || !isset($_POST["phone"]) || !isset($_POST["email"]) || !isset($_POST["expertise"]) || !isset($_POST["introduce"]) ) {
     die("請依正常管道進入");
     
    
+}
+
+$id=$_POST["id"];
+$name=$_POST["name"];
+$gender=$_POST["gender"];
+$phone=$_POST["phone"];
+$email=$_POST["email"];
+$introduce=$_POST["introduce"];
+$photo=$_POST["photo"];
+$expertise=$_POST["expertise"];
+// echo "$id, $name, $phone, $email,$photo";
+
+$emailFormat="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
+$phoneFormat="/^09\d{8}$/";
+
+require_once("db_connect.php");
+
+function DelaytoAddTeacher($num){
+    $id=$_POST["id"];
+    header("Refresh:$num;url= teacher-edit-Ming.php?id=$id");
+    exit;
 }
 
 if (empty($_POST["name"])) {
@@ -53,30 +67,19 @@ if (empty($_POST["introduce"])) {
     DelaytoAddTeacher(1);
 }
 
-
-
-
-
-
-$name=$_POST["name"];
-$gender=$_POST["gender"];
-$phone=$_POST["phone"];
-$email=$_POST["email"];
-$introduce=$_POST["introduce"];
-// $photo=$_POST["photo"];
-$expertise=$_POST["expertise"];
-
-$emailFormat="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
-$phoneFormat="/^09\d{8}$/";
-
 // 為了判斷是否有人創建過帳號 抓取NAME的數據
-$sql="SELECT * FROM teachers WHERE name='$name'";
-$result=$conn->query($sql);
-$teacherCount=$result->num_rows;
+$sqlNameRepeatcheck="SELECT * FROM teachers WHERE name='$name'";
+$resultNameRepeatcheck=$conn->query($sqlNameRepeatcheck);
 
-if($teacherCount==1){
+$teacherCount=$resultNameRepeatcheck->num_rows;
+$sqlID="SELECT * FROM teachers WHERE id='$id'";
+$resultID=$conn->query($sqlID);
+$rowID=$resultID->fetch_assoc();
+
+
+if($teacherCount==1 && $name<>$rowID["name"]){
    echo "該名稱已有人使用";
-   
+  
     DelaytoAddTeacher(1);
     //  die("該名稱已有人使用");
     
@@ -104,16 +107,19 @@ if ($_FILES["file"]["error"] == 0) {
         $fileName = $_FILES["file"]["name"];
 
         echo "上傳成功, 檔名為" . $fileName;
+       
+        $sql = "UPDATE teachers SET name='$name',gender='$gender',phone='$phone',email='$email',introduce='$introduce',photo='$fileName',expertise='$expertise' WHERE id=$id";
 
-        
-
-        $sql="INSERT INTO teachers (name, gender,phone,email, introduce,expertise,photo) VALUES ('$name', '$gender','$phone','$email','$introduce','$expertise','$fileName')";
 // var_dump($_FILES["file"]);
         // -> 代表子方法 
         if ($conn->query($sql) === TRUE) {
-            
+            $imagePath="images/teachers/$photo";
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+                // echo "图片已成功删除。";
+            }
 
-            header("location:teachers-list-Ming.php");
+            header("location:teacher-Ming.php?id=$id");
         } else {
             echo "新增資料錯誤: " . $conn->error;
         }
@@ -121,10 +127,17 @@ if ($_FILES["file"]["error"] == 0) {
         echo "上傳失敗";
     }
 } else if($_FILES["file"]["error"] == 4){
-// die("請上傳頭像");
-echo "請上傳頭像";
-DelaytoAddTeacher(1);
+    $sql = "UPDATE teachers SET name='$name',gender='$gender',phone='$phone',email='$email',introduce='$introduce',expertise='$expertise' WHERE id=$id";
+
+     // -> 代表子方法 
+     if ($conn->query($sql) === TRUE) {
+            
+
+        header("location:teacher-Ming.php?id=$id");
+    } else {
+        echo "新增資料錯誤: " . $conn->error;
+    }
 }else{
     var_dump($_FILES["file"]["error"]);
 }
-?>
+
