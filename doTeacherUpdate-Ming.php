@@ -108,7 +108,15 @@ if ($_FILES["file"]["error"] == 0) {
 
         echo "上傳成功, 檔名為" . $fileName;
        
+
+
+        // 處理 文章中有' 改成\'
+        if (strpos($introduce, "'") !== false) {
+            $introduce = str_replace("'", "\\'", $introduce);
+        }
+
         $sql = "UPDATE teachers SET name='$name',gender='$gender',phone='$phone',email='$email',introduce='$introduce',photo='$fileName',expertise='$expertise' WHERE id=$id";
+
 
 // var_dump($_FILES["file"]);
         // -> 代表子方法 
