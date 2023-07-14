@@ -104,7 +104,11 @@ if ($_FILES["file"]["error"] == 0) {
         $fileName = $_FILES["file"]["name"];
 
         echo "上傳成功, 檔名為" . $fileName;
-
+        
+        // 處理 文章中有' 改成\'
+        if (strpos($introduce, "'") !== false) {
+            $introduce = str_replace("'", "\\'", $introduce);
+        }
         
 
         $sql="INSERT INTO teachers (name, gender,phone,email, introduce,expertise,photo) VALUES ('$name', '$gender','$phone','$email','$introduce','$expertise','$fileName')";
