@@ -20,5 +20,11 @@ switch ($type) {
     case 6:
         $where = "startDate DESC";
         break;
+    case 7:
+        $where = "enable DESC";
+        break;
+    case 8:
+        $where = "enable ASC" ;   
+        break;
 }
 

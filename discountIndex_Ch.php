@@ -19,6 +19,7 @@ include("./modal/sortType_Ch.php");
 $sql = "SELECT * FROM ch WHERE valid=1 ORDER BY $where LIMIT $start,$countPerPage ";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+
 ?>
 
 <!doctype html>
@@ -60,11 +61,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             單頁筆數
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=10">10</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=20">20</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=30">30</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=40">40</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=50">50</a></li>
+            <?php for($i=10;$i<=50;$i+=10): ?>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=<?=$i?>"><?=$i?></a></li>
+            <?php endfor; ?>
           </ul>
         </div>
         <div class="btn-group float-end">
@@ -78,6 +77,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             <li><a class="dropdown-item" href="discountIndex_Ch.php?type=4">折扣降冪</a></li>
             <li><a class="dropdown-item" href="discountIndex_Ch.php?type=5">有效日期升冪</a></li>
             <li><a class="dropdown-item" href="discountIndex_Ch.php?type=6">有效日期降冪</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=7">啟用</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=8">停用</a></li>
           </ul>
         </div>
       </div>
