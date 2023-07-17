@@ -100,11 +100,9 @@ $totalPageCount = ceil($numDiscount / $countPerPage);
                         單頁筆數
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if (isset($type)) {echo "type=$type";} ?>&countPerPage=10">10</a></li>
-                        <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if (isset($type)) {echo "type=$type";} ?>&countPerPage=20">20</a></li>
-                        <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if (isset($type)) {echo "type=$type";} ?>&countPerPage=30">30</a></li>
-                        <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if (isset($type)) {echo "type=$type";} ?>&countPerPage=40">40</a></li>
-                        <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if (isset($type)) {echo "type=$type";} ?>&countPerPage=50">50</a></li>
+                        <?php for($i=10;$i<=50;$i+=10): ?>
+                        <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if (isset($type)) {echo "type=$type";} ?>&countPerPage=<?=$i?>"><?=$i?></a></li>
+                        <?php endfor; ?>
                     </ul>
                 </div>
                 <div class="btn-group">
@@ -118,6 +116,8 @@ $totalPageCount = ceil($numDiscount / $countPerPage);
                         <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if(isset($countPerPage)){ echo "countPerPage=$countPerPage";} ?>&type=4">折扣降冪</a></li>
                         <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if(isset($countPerPage)){ echo "countPerPage=$countPerPage";} ?>&type=5">有效日期升冪</a></li>
                         <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if(isset($countPerPage)){ echo "countPerPage=$countPerPage";} ?>&type=6">有效日期降冪</a></li>
+                        <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if(isset($countPerPage)){ echo "countPerPage=$countPerPage";} ?>&type=7">啟用</a></li>
+                        <li><a class="dropdown-item" href="dosearch_Ch.php?searchName=<?= $searchName ?>&discountmin=<?= $discountmin ?>&discountMax=<?= $discountMax ?>&datemin=<?= $datemin ?>&dateMax=<?= $dateMax ?>&countType=<?= $countType ?>&<?php if(isset($countPerPage)){ echo "countPerPage=$countPerPage";} ?>&type=8">停用</a></li>
                     </ul>
                 </div>
             </div>

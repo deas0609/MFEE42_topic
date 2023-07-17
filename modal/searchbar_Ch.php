@@ -29,7 +29,7 @@
             <label for="">折扣分類</label>
             <div class="d-flex justify-content-start mb-4">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="countType" id="inlineRadio1" value="1">
+                    <input class="form-check-input" type="radio" name="countType" id="inlineRadio1" value="1" checked>
                     <label class="form-check-label" for="inlineRadio1">固定折扣</label>
                 </div>
                 <div class="form-check form-check-inline">
