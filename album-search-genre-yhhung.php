@@ -132,11 +132,11 @@ $newRows = array_slice($allRows, $startItemOfAlbum, $perPageOfAlbum, true);
                 <!-- 搜尋唱片by genre -->
                 <div class="py-2">
             <!-- 3.建立album-search-genre.php -->
-            <form action="album-search-genre-yhhung.php" method="get">
+            <form action="album-search-genre-yhhung.php" method="get" class="form-control">
             <!-- 連結連結連結 在上面 -->
             <div class="row gx-2">
             <div class="col">
-                <select type="text" class="form-control" placeholder="搜尋唱片genre" name="genre" >
+                <select type="text" class="form-control" placeholder="搜尋唱片genre" name="genre" id="genre-select" class="form-control">
                             <option value="Electronic">電子音樂</option>
                             <option value="Rock">搖滾</option>
                             <option value="Pop">流行</option>
@@ -214,6 +214,17 @@ $newRows = array_slice($allRows, $startItemOfAlbum, $perPageOfAlbum, true);
         <?php endif; ?>
 
     </div>
+
+    <script>
+  // 獲取網址中的參數
+  const urlParams = new URLSearchParams(window.location.search);
+  const genreValue = urlParams.get('genre');
+
+  // 選取對應的選項
+  const genreSelect = document.getElementById('genre-select');
+  genreSelect.value = genreValue;
+</script>
+
 </body>
 
 </html>

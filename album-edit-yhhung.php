@@ -61,7 +61,7 @@ $row = $result->fetch_assoc();
                             <img class="img-fluid" src="images/alburm/<?= $row["cover_image"] ?>" alt="<?= $row["title"] ?>">
                         </figure>
                         <!-- 連結連結連結 -->
-                        <form action="doCoverUpdate-yhhung.php" method="post" enctype="multipart/form-data">
+                        <form action="doCoverUpdate-yhhung.php" method="post" enctype="multipart/form-data" class="form-control">
                             <input type="hidden" name="id" value="<?= $row["id"] ?>">
                             <input type="file" class="form-control" name="file">
                             <br>
@@ -72,7 +72,7 @@ $row = $result->fetch_assoc();
     <div class="col-lg-8">
         <br>
         <!-- 連結連結連結 -->
-        <form action="doAlbumUpdate-yhhung.php" method="post">
+        <form action="doAlbumUpdate-yhhung.php" method="post" class="form-control">
       
         <table class="table table-bordered ">
             
