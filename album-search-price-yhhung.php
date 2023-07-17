@@ -1,6 +1,6 @@
 <?php
 
-require_once("../db_connect.php");
+require_once("db_connect.php");
 
 //2.分頁
 $pageOfAlbum =$_GET["page"] ?? 1;
