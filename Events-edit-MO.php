@@ -69,10 +69,12 @@ $conn->close();
                 <tr>
                     <th>圖片</th>
                     <td>
-                        <?php if (!empty($row["images"])) : ?>
-                            <img src="<?= $row["images"] ?>" width="200" />
+                    <?php if (!empty($row["images"])) : ?>
+                            <img id="previewImage" src="<?= $row["images"] ?>" width="200" />
+                        <?php else : ?>
+                            <div id="previewDiv" style="width: 150px; height: 150px; border: 1px solid #ccc;"></div>
                         <?php endif; ?>
-                        <input type="file" class="form-control" name="images">
+                        <input type="file" class="form-control" name="images" onchange="previewFile(event)">
                     </td>
                 </tr>
                 <tr>
@@ -123,6 +125,30 @@ $conn->close();
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        function previewFile(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    if (input.files[0].type.includes('image')) {
+                        document.getElementById('previewImage').src = e.target.result;
+                        document.getElementById('previewImage').style.display = 'block';
+                        document.getElementById('previewDiv').style.display = 'none';
+                    } else {
+                        document.getElementById('previewImage').style.display = 'none';
+                        const previewDiv = document.getElementById('previewDiv');
+                        previewDiv.style.backgroundImage = `url('${e.target.result}')`;
+                        previewDiv.style.backgroundSize = 'cover';
+                        previewDiv.style.display = 'block';
+                    }
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </body>
 
 </html>
