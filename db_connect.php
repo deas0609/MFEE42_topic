@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "admin";
-$password = "12345";
-$dbname = "mid-sideproject";
+$username = "admin06";
+$password = "admin06";
+$dbname = "topic";
 
 $conn=new mysqli($servername,$username,$password,$dbname); //連線資料庫
 
