@@ -53,7 +53,7 @@ $album_count = $result->num_rows;
         </div>
         <div class="py-2">
         <!-- 連結連結連結  -->
-            <form action="album-search-title-yhhung.php" method="get">
+            <form action="album-search-title-yhhung.php" method="get" class="form-control">
             <div class="row gx-2">
                 <div class="col">
                     <input type="text" class="form-control" 
