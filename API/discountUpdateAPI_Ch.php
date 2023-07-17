@@ -15,6 +15,7 @@ $id = $_POST["id"];
 $discountName = $_POST["discountName"];
 $countType = $_POST["countType"];
 $discount = $_POST["discount"];
+$minimum = $_POST["minimum"];
 $discountCode = $_POST["discountCode"];
 $startDate = $_POST["startDate"];
 $endDate = $_POST["endDate"];
@@ -60,6 +61,26 @@ if (empty($_POST["discountCode"])) {
     die;
 }
 
+$discountCodeCheck="/^[a-zA-Z0-9]+$/";
+if(!preg_match($discountCodeCheck,$discountCode)){
+    $data=[
+        "status" => 0, //狀態碼，判斷是否連線成功
+        "message" => "優惠券代碼請由大小寫英文或數字0-9組成，請勿包含特殊字元，如/,*,-..." //失敗的訊息
+    ];
+    echo json_encode($data);
+    die;
+}
+
+
+if(strlen($discountCode)>20){
+    $data=[
+        "status" => 0, //狀態碼，判斷是否連線成功
+        "message" => "優惠券代碼請勿超過20個字元" //失敗的訊息
+    ];
+    echo json_encode($data);
+    die;
+}
+
 if (empty($_POST["startDate"])) {
     $data = [
         "status" => 0, //狀態碼，判斷是否連線成功
@@ -91,7 +112,7 @@ if ($startDate > $endDate) {
 // var_dump($discountname,$countType,$discount,$discountCode,$startDate,$endDate,$now);
 
 
-$sql = "UPDATE ch SET discountName='$discountName',counTtype='$countType',discount='$discount',discountCode='$discountCode',startDate='$startDate',endDate='$endDate',created_at='$now',enable='$enable' WHERE id=$id";
+$sql = "UPDATE ch SET discountName='$discountName',counTtype='$countType',discount='$discount',minimum='$minimum',discountCode='$discountCode',startDate='$startDate',endDate='$endDate',created_at='$now',enable='$enable' WHERE id=$id";
 
 
 
