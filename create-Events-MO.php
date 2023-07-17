@@ -46,9 +46,13 @@
                 <input type="text" class="form-control" name="descriptions">
             </div>
 
+            <!-- 新增圖片預覽區域 -->
             <div class="mb-3 w-25">
                 <label for="formFile" class="form-label">上傳圖片</label>
-                <input type="file" name="file" class="form-control" required>
+                <input type="file" name="file" class="form-control" required onchange="previewImage(event)">
+                <div class="mt-2">
+                    <img id="preview" src="" alt="" style="max-width: 200px; max-height: 200px;">
+                </div>
             </div>
 
             <!-- 待更新 -->
@@ -79,6 +83,23 @@
             }
 
             return true; // 表單驗證通過，允許提交
+        }
+
+        // 圖片預覽函式
+        function previewImage(event) {
+            const preview = document.getElementById('preview');
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onloadend = function() {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
         }
     </script>
     <script>
