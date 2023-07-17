@@ -162,6 +162,36 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </form>
         </div>
 
+        <hr>
+         <!-- 搜尋唱片by price -->
+            <form action="album-search-price-yhhung.php"  class="form-control">
+                <div class="row gx-3">
+                    <!-- 0630-1加個判斷 如果有篩選結果才顯示回產品列表按鈕 -->
+                    <?php if (isset($_GET["min"])) :  ?>
+
+                        <div class="col-auto">
+                            <a class="btn btn-info" href="album-search-price-yhhung.php">哈哈</a>
+                        </div>
+
+                    <?php endif; ?>
+                    <div class="col-auto">
+                        <input type="number" class="form-control" name="min" value="<?php if (isset($_GET["min"])) echo $_GET["min"] ?>">
+                    </div>
+                    <!-- 0630-2改價錢區間(輸入兩個數值) 01.把一些pricee改成min-->
+                    <div class="col-auto">
+                        ~
+                    </div>
+                    <div class="col-auto">
+                        <input type="number" class="form-control" name="max" value="<?php if (isset($_GET["max"])) echo $_GET["max"]   ?>">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-info">價錢篩選</button>
+                    </div>
+                </div>
+            </form>
+<hr>
+
+
         <!-- create-album-info.php的連結 -->
         <div class="py-2">
         <!-- 連結連結連結 -->
