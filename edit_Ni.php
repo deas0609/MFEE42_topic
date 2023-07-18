@@ -30,10 +30,10 @@ $row = $result->fetch_assoc();
         <form action="update_Ni.php" method="post">
             <thead>  
                 <input type="hidden" name="course_id" value="<?= $row["course_id"] ?>">
-                <tr>
+                <!-- <tr>
                     <th>排序</th>
                     <td><input type="text" class="form-control" value="<?= $row["course_id"]?>" name="course_id"></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <th>圖片</th>
                     <td><input type="file" class="form-control" value="<?= $row["img"]?>" name="img"></td>

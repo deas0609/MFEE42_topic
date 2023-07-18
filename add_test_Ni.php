@@ -16,20 +16,20 @@
 
 <body>
 <div class="container">
-    <div class="py-2">
+    <div class="py-2 ">
         <a href="course_Ni.php" class="btn btn-info">回課程頁面</a>
     </div>
-    <div class="row">
+    <div class="row ">
         <form action="course.doCreate_Ni.php" method="post" enctype="multipart/form-data">
             <div class="py-2">
                 <!-- 請輸入課程編號： <input type="text" name="course_id" > <br> -->
-                請選擇圖片：<input type="file"  name="file"> <br>
-                請輸入課程名稱： <input type="text" name="name" > <br>
-                請輸入課程資訊： <input type="text" name="directions" id="directions"> <br>
-                請輸入課程價格： <input type="text" name="price" > <br>
-                請輸入上架時間： <input type="date" name="up_date" > <br>
-                請輸入下架時間： <input type="date" name="shelf_time"><br>
-                <button class="btn btn-info" type="submit">送出</button>
+                請選擇圖片：<input type="file" class="p-3" name="file"> <br>
+                請輸入課程名稱： <input type="text" class="m-3" name="name" > <br>
+                請輸入課程資訊： <input type="text" class="m-3" name="directions" id="directions"> <br>
+                請輸入課程價格： <input type="text" class="m-3" name="price" > <br>
+                請輸入上架時間： <input type="date" class="m-3" name="up_date" > <br>
+                請輸入下架時間： <input type="date" class="m-3" name="shelf_time"><br>
+                <button class="btn btn-info " type="submit">送出</button>
             </div>
          </form>
     </div>

@@ -40,7 +40,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         </div>
         <form action="search_Ni.php">
           <div class="py-2 d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search course" aria-label="Search" name="search">
+            <input class="form-control me-2" type="search" placeholder="Search course" aria-label="Search" name="name">
             <button class="btn btn-outline-info" type="submit">Search</button>
           </div>
         </form>

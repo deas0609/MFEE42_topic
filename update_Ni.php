@@ -1,5 +1,6 @@
 <?php
 
+$course_id=$_POST["course_id"];
 $img=$_POST["img"];
 $name=$_POST["name"];
 $name=htmlspecialchars($name,ENT_QUOTES,"UTF-8");
@@ -10,7 +11,7 @@ $shelf_time=$_POST["shelf_time"];
 
 require_once("db_connect.php");
 
-$course_id=$_POST["course_id"];
+
 
 $sql="UPDATE course SET img='$img', name='$name',directions='$directions',price='$price' ,up_date='$up_date',shelf_time='$shelf_time' WHERE course_id=$course_id";
 
