@@ -32,8 +32,8 @@ $row = $result->fetch_assoc();
 
 <body>
     <div class="container">
-        <div class="py-2">
-            <a class="btn btn-info" href="user-list-allen.php">回使用者列表</a>
+        <div class="py-4">
+            <a class="btn btn-outline-primary" href="user-list-allen.php">回使用者列表</a>
         </div>
         <table class="table table-bordered ">
             <tr>
@@ -69,8 +69,8 @@ $row = $result->fetch_assoc();
                 <td><?=$row["created_at"]?></td>
             </tr>
         </table>
-        <div class="py-2">
-            <a class="btn btn-info" href="user-edit-allen.php?id=<?=$row["id"]?>">編輯</a>
+        <div class="d-flex justify-content-center py-2">
+            <a class="btn btn-primary" href="user-edit-allen.php?id=<?=$row["id"]?>">編輯使用者資料</a>
         </div>
       
 
