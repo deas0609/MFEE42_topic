@@ -16,12 +16,12 @@
       --page-spacing-top: 56px;
     }
     body {
-  overflow: hidden;
- 
+      overflow: hidden;
 
-}
 
-  
+    }
+
+
 
     .brand-name {
       width: var(--aside-width);
@@ -49,7 +49,7 @@
     <a class="bg-black py-3 px-3 text-decoration-none link-light brand-name" href="">Company Name</a>
     <div class="d-flex align-items-center">
       <div class="me-3">
-        
+
       </div>
       <a href="" class="btn btn-dark me-3"><i class="fa-solid fa-right-to-bracket fa-fw"></i> Logout</a>
 
@@ -90,9 +90,9 @@
             優惠劵
           </a>
         </li>
-        
+
       </ul>
-      
+
     </nav>
   </aside>
   <main class="main-content vh-100">
@@ -104,10 +104,10 @@
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
+    </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
+    </script>
 
   <script>
     const manageList=document.querySelectorAll(".main-aside li a");
@@ -116,14 +116,14 @@
 
 
     manageList.forEach(function(manage,index) {
-      
+
       manageList[index].addEventListener("click",function(event){
         event.preventDefault();
-        
+
         mainIframe.src=manageList[index].href;
-        
+
       })
-      
+
     });
 
   </script>
