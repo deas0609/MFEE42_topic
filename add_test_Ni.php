@@ -22,7 +22,7 @@
     <div class="row">
         <form action="course.doCreate_Ni.php" method="post" enctype="multipart/form-data">
             <div class="py-2">
-                請輸入課程編號： <input type="text" name="course_id" > <br>
+                <!-- 請輸入課程編號： <input type="text" name="course_id" > <br> -->
                 請選擇圖片：<input type="file"  name="file"> <br>
                 請輸入課程名稱： <input type="text" name="name" > <br>
                 請輸入課程資訊： <input type="text" name="directions" id="directions"> <br>
