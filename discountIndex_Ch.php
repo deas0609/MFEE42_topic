@@ -62,7 +62,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
           </button>
           <ul class="dropdown-menu">
             <?php for($i=10;$i<=50;$i+=10): ?>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=<?=$i?>"><?=$i?></a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?<?php if (isset($type)) {echo "type=$type";} ?>&countPerPage=<?=$i?>"><?=$i?></a></li>
             <?php endfor; ?>
           </ul>
         </div>
