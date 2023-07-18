@@ -116,7 +116,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <!-- 搜尋唱片by title -->
     <div class="py-2">
     <!-- 連結連結連結 -->
-      <form action="album-search-title-yhhung.php" method="get">
+      <form action="album-search-title-yhhung.php" method="get" class="form-control">
         <div class="row gx-2">
             <div class="col">
                 <input type="text" class="form-control" placeholder="請搜尋專輯標題" name="title" required>
@@ -135,7 +135,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         <!-- 搜尋唱片by genre -->
         <div class="py-2">
         <!-- 連結連結連結 -->
-            <form action="album-search-genre-yhhung.php" method="get">
+            <form action="album-search-genre-yhhung.php" method="get" class="form-control">
             <div class="row gx-2">
             <div class="col">
                 <select type="text" class="form-control" placeholder="搜尋唱片genre" name="genre" placeholder="請選擇音樂類型" required>
@@ -164,7 +164,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
         <hr>
          <!-- 搜尋唱片by price -->
-            <form action="album-search-price-yhhung.php"  class="form-control">
+            <form action="album-search-price-yhhung.php"  class="form-control" class="form-control">
                 <div class="row gx-3">
                     <!-- 0630-1加個判斷 如果有篩選結果才顯示回產品列表按鈕 -->
                     <?php if (isset($_GET["min"])) :  ?>

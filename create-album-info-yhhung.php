@@ -20,7 +20,7 @@
       <a class="btn btn-info" href="album-list-yhhung.php">回列表</a>
     </div>
     <!-- 連結連結連結  -->
-    <form action="doAlbumCreate-yhhung.php" method="post" enctype="multipart/form-data" >
+    <form action="doAlbumCreate-yhhung.php" method="post" enctype="multipart/form-data" class="form-control">
       
         <table class="table table-bordered ">
             
