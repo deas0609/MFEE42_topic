@@ -101,7 +101,7 @@ if (isset($_POST['search'])) {
               </td>
               <td><img class="cimg" src="images/Ni_img/<?= $row["img"] ?>" alt="圖片"></td>
               <td><?php echo $row['name']; ?></td>
-              <td class="d-inline-block text-truncate" style="max-width: 600px; height:5em"><?php echo $row['directions']; ?></td>
+              <td class="d-inline-block text-truncate" style="max-width: 550px; height:100px"><?php echo $row['directions']; ?></td>
               <td class="text-truncate"><?php echo $row['price']; ?>元</td>
               <td class="text-truncate"><?php echo $row['up_date']; ?></td>
               <td class="text-truncate"><?php echo $row['shelf_time']; ?></td>
@@ -132,7 +132,7 @@ if (isset($_POST['search'])) {
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <?php for ($i = 1; $i <= $totalPage; $i++) : ?>
-            <li class="page-item"><a class="page-link" href="course_Ni.php?page=<?= $i ?>&type=<?=$type?>"><?= $i ?></a></li>
+            <li class="page-item <?php if($i==$page) echo 'active';?>"><a class="page-link" href="course_Ni.php?page=<?= $i ?>&type=<?=$type?>"><?= $i ?></a></li>
           <?php endfor; ?>
         </ul>
       </nav>

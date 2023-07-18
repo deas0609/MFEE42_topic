@@ -1,6 +1,7 @@
 <?php
 
 $img=$_POST["img"];
+$name=$_POST["name"];
 $name=htmlspecialchars($name,ENT_QUOTES,"UTF-8");
 $directions=$_POST["directions"];
 $price=$_POST["price"];
