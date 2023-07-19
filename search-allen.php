@@ -51,7 +51,7 @@ if (isset($name)) {
                         <input type="text" class="form-control" placeholder="搜尋使用者" name="name">
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-info" type="submit">搜尋
+                        <button class="btn btn-outline-success" type="submit">搜尋
                         </button>
                     </div>
                 </div>
