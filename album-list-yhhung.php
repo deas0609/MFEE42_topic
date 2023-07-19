@@ -113,10 +113,13 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 <body>
     <div class="container">
 
+
+
+
     <!-- 搜尋唱片by title -->
     <div class="py-2">
     <!-- 連結連結連結 -->
-      <form action="album-search-title-yhhung.php" method="get">
+      <!-- <form action="album-search-title-yhhung.php" method="get" class="form-control">
         <div class="row gx-2">
             <div class="col">
                 <input type="text" class="form-control" placeholder="請搜尋專輯標題" name="title" required>
@@ -129,13 +132,37 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
         </div>
       </form>
-    </div>
+    </div> -->
 
 
-        <!-- 搜尋唱片by genre -->
-        <div class="py-2">
+
+
+        <div class="row ">
+        <div class="col-6">
+                                <!-- 搜尋唱片by price -->
+                <form action="album-search-price-yhhung.php"  class="form-control" class="form-control ">
+                    <div class="row gx-3 ">
+                        <div class="col-auto">
+                            <input type="number" class="form-control" name="min" value="<?php if (isset($_GET["min"])) echo $_GET["min"] ?>">
+                        </div>
+                        <div class="col-auto">
+                        ~
+                        </div>
+                        <div class="col-auto">
+                            <input type="number" class="form-control" name="max" value="<?php if (isset($_GET["max"])) echo $_GET["max"]   ?>">
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-info">價錢篩選</button>
+                        </div>
+                    </div>
+                </form>
+
+        </div>
+
+                    <!-- 搜尋唱片by genre -->
+        <div class="col-4">
         <!-- 連結連結連結 -->
-            <form action="album-search-genre-yhhung.php" method="get">
+            <form action="album-search-genre-yhhung.php" method="get" class="form-control">
             <div class="row gx-2">
             <div class="col">
                 <select type="text" class="form-control" placeholder="搜尋唱片genre" name="genre" placeholder="請選擇音樂類型" required>
@@ -162,31 +189,69 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </form>
         </div>
 
-        <!-- create-album-info.php的連結 -->
-        <div class="py-2">
-        <!-- 連結連結連結 -->
-            <a class="btn btn-success"href="create-album-info-yhhung.php">新增唱片</a>
+            <div class="col-2 d-flex flex-row-reverse">
+                         <!-- 進階搜尋的連結 -->
+                        <!-- 連結連結連結 -->
+                        <a class="btn btn-info" href="album-search-form-yhhung.php">進階搜尋</a>
+
+            </div>
         </div>
 
 
-        <!-- 1.唱片 -->
-    <div class="py-2">
-            共計<?= $resultCount ?>筆結果
+
+
+
+<div class="row mt-2">
+        <div class="col-2 ">
+                        <!-- create-album-info.php的連結 -->
+                    <div class="py-2">
+                        <!-- 連結連結連結 -->
+                        <a class="btn btn-success"href="create-album-info-yhhung.php">新增唱片</a>
+                    </div>
+
+        </div>
+        <div class="col-7">
+            &nbsp;
+        </div>
+        <div class="col-2">
+            
+
+        </div>
+
+        <div class="col-1">
+                            <!-- test -->
+            <div class="btn-group ">
+    <!-- 連結連結連結*8 -->
+            <button class="form-select " data-bs-toggle="dropdown" aria-expanded="false" class="btn btn-primary">
+                排序
+            </button>
+                <ul class="dropdown-menu">
+                    <li><a href="album-list-yhhung.php?page=<?=$pageOfAlbum?>&type=1" class="dropdown-item <?php if($type==1)echo "active"; ?>">依上架日期(舊到新)</a></li>
+                    <li><a href="album-list-yhhung.php?page=<?=$pageOfAlbum?>&type=2" class="dropdown-item <?php if($type==2)echo "active"; ?>">依上架日期(新到舊)</a></li>
+                    <li><a href="album-list-yhhung.php?page=<?=$pageOfAlbum?>&type=3" class="dropdown-item <?php if($type==3)echo "active"; ?>">title↑</a></li>
+                    <li><a href="album-list-yhhung.php?page=<?= $pageOfAlbum ?>&type=4" class="dropdown-item <?php if($type==4)echo "active"; ?>">title↓</a></li>
+                    <li><a href="album-list-yhhung.php?page=<?=$pageOfAlbum?>&type=5" class="dropdown-item <?php if($type==5)echo "active"; ?>">依年分(舊到新)</a></li>
+                    <li><a href="album-list-yhhung.php?page=<?= $pageOfAlbum ?>&type=6" class="dropdown-item <?php if($type==6)echo "active"; ?>">依年分(新到舊)</a></li>
+                    <li><a href="album-list-yhhung.php?page=<?=$pageOfAlbum?>&type=7" class="dropdown-item <?php if($type==7)echo "active"; ?>">價格(低到高)</a></li>
+                    <li><a href="album-list-yhhung.php?page=<?= $pageOfAlbum ?>&type=8" class="dropdown-item <?php if($type==8)echo "active"; ?>">價格(高到低)</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 
-    <!-- test -->
-    <div class="btn-group">
-    <!-- 連結連結連結*8 -->
-                <a href="album-list-yhhung.php?page=<?=$pageOfAlbum?>&type=1" class="btn btn-primary<?php if($type==1)echo "active"; ?>">依上架日期(舊到新)</a>
-                <a href="album-list-yhhung.php?page=<?= $pageOfAlbum ?>&type=2" class="btn btn-primary<?php if($type==2)echo "active"; ?>">依上架日期(新到舊)</a>
-                <a href="album-list-yhhung.php?page=<?=$pageOfAlbum?>&type=3" class="btn btn-primary<?php if($type==3)echo "active"; ?>">title↑</a>
-                <a href="album-list-yhhung.php?page=<?= $pageOfAlbum ?>&type=4" class="btn btn-primary<?php if($type==4)echo "active"; ?>">title↓</a>
-                <a href="album-list-yhhung.php?page=<?=$pageOfAlbum?>&type=5" class="btn btn-primary<?php if($type==5)echo "active"; ?>">依年分(舊到新)</a>
-                <a href="album-list-yhhung.php?page=<?= $pageOfAlbum ?>&type=6" class="btn btn-primary<?php if($type==6)echo "active"; ?>">依年分(新到舊)</a>
-                <a href="album-list-yhhung.php?page=<?=$pageOfAlbum?>&type=7" class="btn btn-primary<?php if($type==7)echo "active"; ?>">價格(低到高)</a>
-                <a href="album-list-yhhung.php?page=<?= $pageOfAlbum ?>&type=8" class="btn btn-primary<?php if($type==8)echo "active"; ?>">價格(高到低)</a>
-            </div>
+
+
+
+
+
+
+
+                        
+
+
+
+
 
 
         <!-- 1.唱片 -->

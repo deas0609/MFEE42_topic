@@ -20,7 +20,7 @@
       <a class="btn btn-info" href="album-list-yhhung.php">回列表</a>
     </div>
     <!-- 連結連結連結  -->
-    <form action="doAlbumCreate-yhhung.php" method="post" enctype="multipart/form-data" >
+    <form action="doAlbumCreate-yhhung.php" method="post" enctype="multipart/form-data" class="form-control">
       
         <table class="table table-bordered ">
             
@@ -61,6 +61,7 @@
             <tr>
                 <th>種類1</th>
                 <td><select type="text" class="form-control"  name="genre_1" required>
+                            <option value=""></option>
                             <option value="Electronic">電子音樂</option>
                             <option value="Rock">搖滾</option>
                             <option value="Pop">流行</option>

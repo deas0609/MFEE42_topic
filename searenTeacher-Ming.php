@@ -50,6 +50,7 @@ if(isset($_GET["name"])&& !empty($_GET["name"])){
             </div>
         </div>
 <?php if(!empty($_GET["name"])) :?>
+  <div class="table-responsive">
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -86,6 +87,7 @@ if(isset($_GET["name"])&& !empty($_GET["name"])){
 
       </tbody>
     </table>
+    </div>
     <?php endif;?>
 
   </div>

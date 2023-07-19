@@ -19,6 +19,7 @@ include("./modal/sortType_Ch.php");
 $sql = "SELECT * FROM ch WHERE valid=1 ORDER BY $where LIMIT $start,$countPerPage ";
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
+
 ?>
 
 <!doctype html>
@@ -31,8 +32,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -60,11 +61,9 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             單頁筆數
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=10">10</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=20">20</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=30">30</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=40">40</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?countPerPage=50">50</a></li>
+            <?php for($i=10;$i<=50;$i+=10): ?>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?<?php if (isset($type)) {echo "type=$type";} ?>&countPerPage=<?=$i?>"><?=$i?></a></li>
+            <?php endfor; ?>
           </ul>
         </div>
         <div class="btn-group float-end">
@@ -78,6 +77,8 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             <li><a class="dropdown-item" href="discountIndex_Ch.php?type=4">折扣降冪</a></li>
             <li><a class="dropdown-item" href="discountIndex_Ch.php?type=5">有效日期升冪</a></li>
             <li><a class="dropdown-item" href="discountIndex_Ch.php?type=6">有效日期降冪</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=7">啟用</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=8">停用</a></li>
           </ul>
         </div>
       </div>
@@ -158,11 +159,10 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
+    </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
 
 </body>
 

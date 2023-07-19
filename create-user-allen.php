@@ -15,40 +15,42 @@
 
 <body>
     <div class="container">
-        <div class="py-2">
-            <a class="btn btn-info" href="user-list-allen.php">回使用者列表</a>
+        <div class="py-3">
+            <a class="btn btn-outline-primary" href="user-list-allen.php">回使用者列表</a>
         </div>
         <form action="doCreate-allen.php" method="post">
             <div class="mb-3">
-                <label for="">Name</label>
+                <label for="">姓名</label>
                 <input type="text" class="form-control" name="name" required maxlength="30">
             </div>
             <div class="mb-3">
-                <label for="">Account</label>
+                <label for="">帳號</label>
                 <input type="text" class="form-control" name="account" required pattern="^[a-zA-Z][a-zA-Z0-9_]{4,15}$">
             </div>
             <div class="mb-3">
-                <label class="mb-1" for="">Gender</label><br>
+                <label class="mb-1" for="">性別</label><br>
                 <input type="radio" name="gender" value="male" required>男性
                 <input type="radio" name="gender" value="female">女性
             </div>
             <div class="mb-3">
-                <label for="">Birthday</label><br>
+                <label for="">生日</label><br>
                 <input type="date"  name="birthday" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
             </div>
             <div class="mb-3">
-                <label for="">Email</label>
+                <label for="">信箱</label>
                 <input type="email" class="form-control" name="email" required>
             </div>
             <div class="mb-3">
-                <label for="">Address</label>
+                <label for="">地址</label>
                 <input type="text" class="form-control" name="address" required pattern="^[^\.\*\+\?\^\$\{\}\[\]\(\)\|\\]+$">
             </div>
             <div class="mb-3">
-                <label for="">Phone</label>
+                <label for="">電話</label>
                 <input type="text" class="form-control" name="phone" required pattern="^(09)[0-9]{8}$">
             </div>
-            <button class="btn btn-info" type="submit">送出</button>
+            <div class="d-flex justify-content-end pt-3">
+                <button class="btn btn-primary" type="submit">送出</button>
+            </div>
         </form>
     </div>
 </body>

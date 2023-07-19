@@ -18,8 +18,10 @@ $sql="UPDATE member SET name='$name', account='$account',birthday='$birthday', e
 
 
 if ($conn->query($sql) === TRUE) {
+    header("location: user-allen.php?id=".$id);
+    echo "修改資料完成";
+    // echo '<a class="btn btn-info" href="user-list-allen.php">回使用者列表</a>';
     
-    header("location: user-edit-allen.php?id=".$id);
 
 } else {
     echo "修改增資料錯誤: " . $conn->error;

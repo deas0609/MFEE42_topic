@@ -97,7 +97,7 @@ $rowPage = $resultPage->fetch_all(MYSQLI_ASSOC);
     </div>
 
     <!-- 顯示資料 -->
-
+    <div class="table-responsive">
     <table class="table table-bordered">
       <thead>
         <tr>
@@ -134,6 +134,7 @@ $rowPage = $resultPage->fetch_all(MYSQLI_ASSOC);
 
       </tbody>
     </table>
+    </div>
     <!-- 分頁 -->
     <nav aria-label="Page navigation example">
       <ul class="pagination">
