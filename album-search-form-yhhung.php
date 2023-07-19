@@ -26,11 +26,11 @@
             
             <tr>
                 <th>唱片名稱</th>
-                <td><input type="text" class="form-control"  name="title"></td>
+                <td><input type="text" class="form-control"  name="title" placeholder="請輸入唱片名稱"></td>
             </tr>
             <tr>
                 <th>歌手/團體</th>
-                <td><input type="text" class="form-control"  name="artist"></td>
+                <td><input type="text" class="form-control"  name="artist" placeholder="請輸入專輯歌手"></td>
             </tr>
             <tr>
                 <th>唱片種類</th>
@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <th>年分</th>
-                <td><input type="text" class="form-control"  name="startyear">~<input type="text" class="form-control"  name="endyear"></td>
+                <td><input type="text" class="form-control"  name="startyear" placeholder="請輸入查詢年分範圍">~<input type="text" class="form-control"  name="endyear" placeholder="請輸入查詢年分範圍"></td>
             </tr>
             <tr>
                 <th>種類1</th>
@@ -66,7 +66,7 @@
             </tr>
             <tr>
                 <th>價格</th>
-                <td><input type="text" class="form-control"  name="min">~<input type="text" class="form-control"  name="max"></td>
+                <td><input type="text" class="form-control"  name="min" placeholder="請輸入查詢價錢範圍">~<input type="text" class="form-control"  name="max" placeholder="請輸入查詢價錢範圍"></td>
             </tr>
         </table>
         <div class="py-2 d-flex justify-content-between">
