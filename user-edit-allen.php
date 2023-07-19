@@ -54,37 +54,37 @@ $row = $result->fetch_assoc();
                 <tr>
                     <th>姓名</th>
                     <td>
-                        <input type="text" class="form-control" value="<?= $row["name"] ?>" name="name">
+                        <input type="text" class="form-control" value="<?= $row["name"] ?>" name="name" required maxlength="30">
                     </td>
                 </tr>
                 <tr>
                     <th>帳號</th>
                     <td>
-                        <input type="text" class="form-control" value="<?= $row["account"] ?>" name="account">
+                        <input type="text" class="form-control" value="<?= $row["account"] ?>" name="account" required pattern="^[a-zA-Z][a-zA-Z0-9_]{4,15}$">
                     </td>
                 </tr>
                 <tr>
                     <th>生日</th>
                     <td>
-                        <input type="date" value="<?= $row["birthday"] ?>" name="birthday">
+                        <input type="date" value="<?= $row["birthday"] ?>" name="birthday" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$">
                     </td>
                 </tr>
                 <tr>
                     <th>email</th>
                     <td>
-                        <input type="text" class="form-control" value="<?= $row["email"] ?>" name="email">
+                        <input type="email" class="form-control" value="<?= $row["email"] ?>" name="email" required>
                     </td>
                 </tr>
                 <tr>
                     <th>地址</th>
                     <td>
-                        <input type="text" class="form-control" value="<?= $row["address"] ?>" name="address">
+                        <input type="text" class="form-control" value="<?= $row["address"] ?>" name="address" required pattern="^[^\.\*\+\?\^\$\{\}\[\]\(\)\|\\]+$">
                     </td>
                 </tr>
                 <tr>
                     <th>電話</th>
                     <td>
-                    <input type="tel" class="form-control" value="<?= $row["phone"] ?>" name="phone">
+                    <input type="tel" class="form-control" value="<?= $row["phone"] ?>" name="phone" required pattern="^(09)[0-9]{8}$">
                     </td>
                 </tr>
                 <tr>
