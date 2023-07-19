@@ -37,7 +37,8 @@ $totalPageOfAlbum=ceil($totalAlbum/$perPageOfAlbum);
 
 $sql = "SELECT id, title, cover_image, price, format, artist FROM album 
     $whereClouse
-    ORDER BY album.id ASC  LIMIT $startItemOfAlbum , $perPageOfAlbum ";
+    AND valid=1
+    ORDER BY album.price ASC  LIMIT $startItemOfAlbum , $perPageOfAlbum ";
 
 
 // echo"$sql";

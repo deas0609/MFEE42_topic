@@ -119,7 +119,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <!-- 搜尋唱片by title -->
     <div class="py-2">
     <!-- 連結連結連結 -->
-      <form action="album-search-title-yhhung.php" method="get" class="form-control">
+      <!-- <form action="album-search-title-yhhung.php" method="get" class="form-control">
         <div class="row gx-2">
             <div class="col">
                 <input type="text" class="form-control" placeholder="請搜尋專輯標題" name="title" required>
@@ -132,7 +132,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
         </div>
       </form>
-    </div>
+    </div> -->
 
 
         <!-- 搜尋唱片by genre -->
@@ -196,7 +196,12 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
 
         </div>
         <div class="col-2">
-            &nbsp;
+            
+         <!-- 進階搜尋的連結 -->
+            <div class="py-2">
+                        <!-- 連結連結連結 -->
+                        <a class="btn btn-info"href="album-search-form-yhhung.php">進階搜尋</a>
+                    </div>
         </div>
 
         <div class="col-1  ">

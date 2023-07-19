@@ -111,7 +111,7 @@ $newRows = array_slice($allRows, $startItemOfAlbum, $perPageOfAlbum, true);
 <div class="container">
 <nav aria-label="Page navigation example">
 
-共 <?= $totalCountByGenrePlus ?> 個, 第<?=$pageOfAlbum?> 頁 ,共<?=$totalPageOfAlbum?>頁, $perPageOfAlbum: <?=$perPageOfAlbum?>, $startItemOfAlbum: <?=$startItemOfAlbum?>,
+共 <?= $totalCountByGenrePlus ?> 個, 第<?=$pageOfAlbum?> 頁 ,共<?=$totalPageOfAlbum?>頁
 <ul class="pagination">
 
 <?php for($i=1;$i<=$totalPageOfAlbum; $i++): ?>
