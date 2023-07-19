@@ -40,6 +40,11 @@ $totalPage = ceil($totalUser / $perPage);
         width: 25vw;
         height: 25vh;
     }
+
+    .custom-btn {
+        margin-right: 5px;
+        /* 自定義間距，此值應該與 custom-btn-group 的負值相等，以保持兩個按鈕之間的間距不變 */
+    }
 </style>
 
 <!doctype html>
@@ -78,41 +83,69 @@ $totalPage = ceil($totalUser / $perPage);
     </div>
 
     <div class="container">
-        <div class="py-2">
-            <form action="search-MO.php">
-                <div class="row gx-2">
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="搜尋活動" name="name">
+
+
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModalLabel">搜尋活動</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- 搜尋表單 -->
+                <form action="search-MO.php" method="get">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="請輸入活動名稱" name="name">
+                        <button class="btn btn-primary" type="submit">確定</button>
                     </div>
-                    <div class="col-auto">
-                        <button class="btn btn-info" type="submit">搜尋</button>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">價格</span>
+                        <input type="number" class="form-control" placeholder="最低價格" name="minPrice">
+                        <span class="input-group-text">至</span>
+                        <input type="number" class="form-control" placeholder="最高價格" name="maxPrice">
                     </div>
-                </div>
-            </form>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">活動日</span>
+                        <input type="date" class="form-control" name="startDate">
+                        <span class="input-group-text">至</span>
+                        <input type="date" class="form-control" name="endDate">
+                    </div>
+                </form>
+            </div>
         </div>
+    </div>
+</div>
+
+
         <?php
         $user_count = $result->num_rows;
         ?>
-        <div class="py-2 d-flex justify-content-between align-items-center">
-            <a class="btn btn-success" href="create-Events-MO.php">新增</a>
-            <div>
-                共 <?= $totalUser ?> 筆, 第 <?= $page ?> 頁
-            </div>
-        </div>
 
-        <div class="py-2 d-flex justifycontent-end">
+        <div class="my-2 d-flex justify-content-between align-items-center">
             <div class="btn-group">
                 <a href="?page=<?= $page ?>&amp;type=1" class="btn btn-info <?= ($type == 1) ? 'active' : ''; ?>">編號 <i class="fa-solid fa-arrow-down-short-wide"></i></a>
                 <a href="?page=<?= $page ?>&amp;type=2" class="btn btn-info <?= ($type == 2) ? 'active' : ''; ?>">編號 <i class="fa-solid fa-arrow-down-wide-short"></i></a>
-                <a href="?page=<?= $page ?>&amp;type=3" class="btn btn-info <?= ($type == 3) ? 'active' : ''; ?>">日期 <i class="fa-solid fa-arrow-down-short-wide"></i></a>
-                <a href="?page=<?= $page ?>&amp;type=4" class="btn btn-info <?= ($type == 4) ? 'active' : ''; ?>">日期 <i class="fa-solid fa-arrow-down-wide-short"></i></a>
                 <a href="?page=<?= $page ?>&amp;type=5" class="btn btn-info <?= ($type == 5) ? 'active' : ''; ?>">票價 <i class="fa-solid fa-arrow-down-short-wide"></i></a>
                 <a href="?page=<?= $page ?>&amp;type=6" class="btn btn-info <?= ($type == 6) ? 'active' : ''; ?>">票價 <i class="fa-solid fa-arrow-down-wide-short"></i></a>
-                <a href="?page=<?= $page ?>&amp;type=7" class="btn btn-info <?= ($type == 7) ? 'active' : ''; ?>">上架日期 <i class="fa-solid fa-arrow-down-short-wide"></i></a>
-                <a href="?page=<?= $page ?>&amp;type=8" class="btn btn-info <?= ($type == 8) ? 'active' : ''; ?>">上架日期 <i class="fa-solid fa-arrow-down-wide-short"></i></a>
+                <a href="?page=<?= $page ?>&amp;type=3" class="btn btn-info <?= ($type == 3) ? 'active' : ''; ?>">活動日 <i class="fa-solid fa-arrow-down-short-wide"></i></a>
+                <a href="?page=<?= $page ?>&amp;type=4" class="btn btn-info <?= ($type == 4) ? 'active' : ''; ?>">活動日 <i class="fa-solid fa-arrow-down-wide-short"></i></a>
+                <a href="?page=<?= $page ?>&amp;type=7" class="btn btn-info <?= ($type == 7) ? 'active' : ''; ?>">上架日 <i class="fa-solid fa-arrow-down-short-wide"></i></a>
+                <a href="?page=<?= $page ?>&amp;type=8" class="btn btn-info <?= ($type == 8) ? 'active' : ''; ?>">上架日 <i class="fa-solid fa-arrow-down-wide-short"></i></a>
             </div>
-
+            <div class="ms-2 d-flex align-items-center">
+                <div class="custom-btn-group">
+                    <button class="btn btn-success custom-btn" type="button" data-bs-toggle="modal" data-bs-target="#searchModal">搜尋</button>
+                    <a class="btn btn-success custom-btn" href="create-Events-MO.php">新增</a>
+                </div>
+                <div class="ms-2">
+                    共 <?= $totalUser ?> 筆, 第 <?= $page ?> 頁
+                </div>
+            </div>
         </div>
+
+
+
         <?php
         $rows = $result->fetch_all(MYSQLI_ASSOC);
         ?>
@@ -122,10 +155,10 @@ $totalPage = ceil($totalUser / $perPage);
                     <th class="text-center">編號</th>
                     <th class="text-center">圖片</th>
                     <th class="text-center">名稱</th>
-                    <th class="text-center">日期</th>
+                    <th class="text-center">活動日</th>
                     <th class="text-center">地點</th>
                     <th class="text-center">票價</th>
-                    <th class="text-center">上架日期</th>
+                    <th class="text-center">上架日</th>
                     <th class="text-center">說明</th>
                     <th class="text-center">操作</th>
                 </tr>
@@ -160,23 +193,48 @@ $totalPage = ceil($totalUser / $perPage);
                                 <a href="Events-edit-MO.php?id=<?= $row["id"] ?>" class="btn btn-info mb-2">編輯</a><br>
                                 <button class="btn btn-danger deleteBtn" data-id="<?= $row["id"] ?>">刪除</button>
                             <?php else : ?>
-                                <td>已刪除</td>
-                            <?php endif; ?>
-                        </td>
+                        <td>已刪除</td>
+                    <?php endif; ?>
+                    </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
 
+
         <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <?php for ($i = 1; $i <= $totalPage; $i++) : ?>
-                    <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
-                        <a class="page-link" href="<?= $_SERVER['PHP_SELF'] ?>?page=<?= $i ?>&type=<?= $type ?>"><?= $i ?></a>
+            <div class="pagination-container d-flex justify-content-between">
+                <ul class="pagination">
+                    <li class="page-item <?= ($page == 1) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="<?= $_SERVER['PHP_SELF'] ?>?page=1&type=<?= $type ?>">最前頁</a>
                     </li>
-                <?php endfor; ?>
-            </ul>
+                    <li class="page-item <?= ($page == 1) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="<?= $_SERVER['PHP_SELF'] ?>?page=<?= ($page - 1) ?>&type=<?= $type ?>">上一頁</a>
+                    </li>
+                    <?php for ($i = max(1, $page - 2); $i <= min($page + 2, $totalPage); $i++) : ?>
+                        <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+                            <a class="page-link" href="<?= $_SERVER['PHP_SELF'] ?>?page=<?= $i ?>&type=<?= $type ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
+                    <li class="page-item <?= ($page == $totalPage) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="<?= $_SERVER['PHP_SELF'] ?>?page=<?= ($page + 1) ?>&type=<?= $type ?>">下一頁</a>
+                    </li>
+                    <li class="page-item <?= ($page == $totalPage) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="<?= $_SERVER['PHP_SELF'] ?>?page=<?= $totalPage ?>&type=<?= $type ?>">最後頁</a>
+                    </li>
+                </ul>
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <span class="page-link font-weight-bold text-primary">共 <?= $totalPage ?> 頁</span>
+                    </li>
+                </ul>
+            </div>
         </nav>
+
+
+
+
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

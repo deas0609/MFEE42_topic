@@ -1,26 +1,57 @@
 <?php
+// Check if the search form has been submitted
 if (isset($_GET["name"])) {
     $name = $_GET["name"];
+    $minPrice = $_GET["minPrice"] ?? null;
+    $maxPrice = $_GET["maxPrice"] ?? null;
+    $startDate = $_GET["startDate"] ?? null;
+    $endDate = $_GET["endDate"] ?? null;
 
     require_once("db_connect.php");
 
-    if (!empty($_GET["name"])) {
-        $page = $_GET["page"] ?? 1;
-        $perPage = 5;
-        $startItem = ($page - 1) * $perPage;
+    // Build the SQL query with search conditions
+    $whereClause = "WHERE names LIKE '%$name%'";
 
-        $sql = "SELECT id, images, names, dates, locations, price, statuss, launch_date, descriptions FROM Event_Management_MO WHERE names LIKE '%$name%' ORDER BY id ASC LIMIT $startItem, $perPage";
-        $result = $conn->query($sql);
-        $rows = $result->fetch_all(MYSQLI_ASSOC);
-        $user_count = $result->num_rows;
-
-        $sql_count = "SELECT COUNT(*) AS total FROM Event_Management_MO WHERE names LIKE '%$name%'";
-        $count_result = $conn->query($sql_count);
-        $totalUser = $count_result->fetch_assoc()["total"];
-        $totalPage = ceil($totalUser / $perPage);
-    } else {
-        $user_count = 0;
+    if (!empty($minPrice)) {
+        $whereClause .= " AND price >= $minPrice";
     }
+    if (!empty($maxPrice)) {
+        $whereClause .= " AND price <= $maxPrice";
+    }
+    if (!empty($startDate) && !empty($endDate)) {
+        // Check if the dates are valid and then convert to YYYY-MM-DD format for proper SQL comparison
+        $startDate = date('Y-m-d', strtotime($startDate));
+        $endDate = date('Y-m-d', strtotime($endDate));
+        if ($startDate && $endDate) {
+            $whereClause .= " AND dates BETWEEN '$startDate' AND '$endDate'";
+        }
+    } elseif (!empty($startDate)) {
+        // Only start date is given
+        $startDate = date('Y-m-d', strtotime($startDate));
+        if ($startDate) {
+            $whereClause .= " AND dates >= '$startDate'";
+        }
+    } elseif (!empty($endDate)) {
+        // Only end date is given
+        $endDate = date('Y-m-d', strtotime($endDate));
+        if ($endDate) {
+            $whereClause .= " AND dates <= '$endDate'";
+        }
+    }
+
+    $page = $_GET["page"] ?? 1;
+    $perPage = 5;
+    $startItem = ($page - 1) * $perPage;
+
+    $sql = "SELECT id, images, names, dates, locations, price, statuss, launch_date, descriptions FROM Event_Management_MO $whereClause ORDER BY id ASC LIMIT $startItem, $perPage";
+    $result = $conn->query($sql);
+    $rows = $result->fetch_all(MYSQLI_ASSOC);
+    $user_count = $result->num_rows;
+
+    $sql_count = "SELECT COUNT(*) AS total FROM Event_Management_MO $whereClause";
+    $count_result = $conn->query($sql_count);
+    $totalUser = $count_result->fetch_assoc()["total"];
+    $totalPage = ceil($totalUser / $perPage);
 } else {
     $user_count = 0;
 }
@@ -65,11 +96,13 @@ if (isset($_GET["name"])) {
             </form>
         </div>
         <div class="py-2 d-flex justify-content-between align-items-center">
-            <?php if (isset($_GET["name"])) : ?>
+
+        <?php if (isset($_GET["name"])) : ?>
                 <div>
-                    搜尋 <?= $name ?> 的結果, 共有 <?= $user_count ?> 筆符合的資料
+                    共有 <?= $user_count ?> 筆符合的資料
                 </div>
             <?php endif; ?>
+            
         </div>
         <?php if ($user_count != 0) : ?>
             <table class="table table-bordered">
@@ -78,10 +111,10 @@ if (isset($_GET["name"])) {
                         <th>音樂祭編號ID</th>
                         <th>圖片</th>
                         <th>名稱</th>
-                        <th>日期</th>
+                        <th>活動日</th>
                         <th>地點</th>
                         <th>票價</th>
-                        <th>上架日期</th>
+                        <th>上架日</th>
                         <th>說明</th>
                     </tr>
                 </thead>
@@ -97,7 +130,19 @@ if (isset($_GET["name"])) {
                             <td><?= $row["locations"] ?></td>
                             <td><?= $row["price"] ?></td>
                             <td><?= $row["launch_date"] ?></td>
-                            <td style="overflow: hidden;"><?= $row["descriptions"] ?></td>
+                            <td style="overflow: hidden;">
+                            <?php
+                            $maxCharacters = 50; // 設定最大文字數
+
+                            // 檢查說明欄位是否超過最大文字數
+                            if (mb_strlen($row["descriptions"]) > $maxCharacters) {
+                                $trimmedDescription = mb_substr($row["descriptions"], 0, $maxCharacters) . '...'; // 截斷說明文字並加上省略號
+                            } else {
+                                $trimmedDescription = $row["descriptions"]; // 若說明文字未超過最大文字數，則不進行截斷
+                            }
+                            echo $trimmedDescription;
+                            ?>
+                        </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
