@@ -18,6 +18,10 @@ if($type==1){
   $sql = "SELECT * FROM course WHERE valid=1 ORDER BY course_id ASC  LIMIT $startItem,$perPage";
 }elseif($type==2){
   $sql = "SELECT * FROM course WHERE valid=1 ORDER BY course_id DESC  LIMIT $startItem,$perPage";
+}elseif($type==3){
+  $sql = "SELECT * FROM course WHERE valid=1 ORDER BY price ASC  LIMIT $startItem,$perPage";
+}elseif($type==4){
+  $sql = "SELECT * FROM course WHERE valid=1 ORDER BY price DESC  LIMIT $startItem,$perPage";
 }
 
 // $id = $_GET["id"];
@@ -70,6 +74,8 @@ if (isset($_POST['search'])) {
             <div>
               <a href="course_Ni.php?page=<?= $page ?>&type=1" class="btn btn-info">id<i class="fa-solid fa-angles-down"></i></a>
               <a href="course_Ni.php?page=<?= $page ?>&type=2" class="btn btn-info">id<i class="fa-solid fa-angles-up"></i></a>
+              <a href="course_Ni.php?page=<?= $page ?>&type=3" class="btn btn-info">price<i class="fa-solid fa-angles-down"></i></a>
+              <a href="course_Ni.php?page=<?= $page ?>&type=4" class="btn btn-info">price<i class="fa-solid fa-angles-up"></i></a>
             </div>
           </div>
 

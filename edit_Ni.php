@@ -39,7 +39,7 @@ $row = $result->fetch_assoc();
                     
                     <td>
                       <img src="/MFEE42_topic/images/Ni_img/<?=$row["img"]?>" alt="<?= $row["img"]?>"width="100" height="100">  
-                      <input type="file" class="form-control"  name="img">
+                      <input type="file" class="form-control"  name="new_img">
                       <input type="hidden" name="old_img" value="<?= $row["img"] ?>">
                     </td>
                 </tr>

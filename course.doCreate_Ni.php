@@ -14,6 +14,8 @@ require_once("db_connect.php");
   $up_date=$_POST["up_date"];
   $shelf_time=$_POST["shelf_time"];
 
+  $directions = str_replace("'", "\\'", $directions);
+
 if (empty($_POST["name"]) ) {
   echo "請輸入名稱";
   exit;
