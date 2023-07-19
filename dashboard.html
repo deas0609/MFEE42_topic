@@ -28,8 +28,18 @@
     }
 
     nav li:hover{
-      background-color: black ;
+      background: linear-gradient(to right, black,white) ;
       transition: .3s ;
+    }
+
+    .liActive{
+      background: linear-gradient(to right, black,white) ;
+    }
+
+    nav a{
+      color:black;
+      font-size: 100%;
+      text-shadow:50px ;
     }
 
     nav a:hover{
@@ -38,10 +48,11 @@
       transition: .1s ;
     }
 
-    nav a{
-      color:black;
-      font-size: 100%;
+    .aActive{
+      color:white;
     }
+
+
 
     .main-aside {
       width: var(--aside-width);
@@ -138,11 +149,11 @@
         mainIframe.src = manageList[index].href;
 
         for(let i=0;i<manageList.length;i++){
-          manageList[i].style.color="";
-          manageListLi[i].style.background=""
+          manageList[i].classList.remove("aActive");
+          manageListLi[i].classList.remove("liActive");
         }
-        this.style.color="white";
-        manageListLi[index].style.background="black";
+        this.classList.add("aActive");
+        manageListLi[index].classList.add("liActive");
         
       })
 
