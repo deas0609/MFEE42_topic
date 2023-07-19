@@ -80,25 +80,25 @@ $conn->close();
                 <tr>
                     <th>名稱</th>
                     <td>
-                        <input type="text" class="form-control" value="<?= $row["names"] ?>" name="names">
+                        <input type="text" class="form-control" value="<?= $row["names"] ?>" name="names" required>
                     </td>
                 </tr>
                 <tr>
                     <th>日期</th>
                     <td>
-                        <input type="date" class="form-control" value="<?= $row["dates"] ?>" name="dates">
+                        <input type="date" class="form-control" value="<?= $row["dates"] ?>" name="dates" required>
                     </td>
                 </tr>
                 <tr>
                     <th>地點</th>
                     <td>
-                        <input type="text" class="form-control" value="<?= $row["locations"] ?>" name="locations">
+                        <input type="text" class="form-control" value="<?= $row["locations"] ?>" name="locations" required>
                     </td>
                 </tr>
                 <tr>
                     <th>票價</th>
                     <td>
-                        <input type="text" class="form-control" value="<?= $row["price"] ?>" name="price">
+                        <input type="text" class="form-control" value="<?= $row["price"] ?>" name="price" required>
                     </td>
                 </tr>
                 <tr>
