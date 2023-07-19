@@ -61,6 +61,7 @@
             <tr>
                 <th>種類1</th>
                 <td><select type="text" class="form-control"  name="genre_1" required>
+                            <option value=""></option>
                             <option value="Electronic">電子音樂</option>
                             <option value="Rock">搖滾</option>
                             <option value="Pop">流行</option>

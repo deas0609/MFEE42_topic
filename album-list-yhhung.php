@@ -135,8 +135,32 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     </div> -->
 
 
-        <!-- 搜尋唱片by genre -->
-        <div class="py-2">
+
+
+        <div class="row ">
+        <div class="col-6">
+                                <!-- 搜尋唱片by price -->
+                <form action="album-search-price-yhhung.php"  class="form-control" class="form-control ">
+                    <div class="row gx-3 ">
+                        <div class="col-auto">
+                            <input type="number" class="form-control" name="min" value="<?php if (isset($_GET["min"])) echo $_GET["min"] ?>">
+                        </div>
+                        <div class="col-auto">
+                        ~
+                        </div>
+                        <div class="col-auto">
+                            <input type="number" class="form-control" name="max" value="<?php if (isset($_GET["max"])) echo $_GET["max"]   ?>">
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-info">價錢篩選</button>
+                        </div>
+                    </div>
+                </form>
+
+        </div>
+
+                    <!-- 搜尋唱片by genre -->
+        <div class="col-4">
         <!-- 連結連結連結 -->
             <form action="album-search-genre-yhhung.php" method="get" class="form-control">
             <div class="row gx-2">
@@ -165,8 +189,19 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             </form>
         </div>
 
+            <div class="col-2 d-flex flex-row-reverse">
+                         <!-- 進階搜尋的連結 -->
+                        <!-- 連結連結連結 -->
+                        <a class="btn btn-info" href="album-search-form-yhhung.php">進階搜尋</a>
 
-<div class="row">
+            </div>
+        </div>
+
+
+
+
+
+<div class="row mt-2">
         <div class="col-2 ">
                         <!-- create-album-info.php的連結 -->
                     <div class="py-2">
@@ -175,36 +210,15 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                     </div>
 
         </div>
-        <div class="col-7 ">
-                                <!-- 搜尋唱片by price -->
-                <form action="album-search-price-yhhung.php"  class="form-control" class="form-control ">
-                    <div class="row gx-3 ">
-                        <div class="col-2">
-                            <input type="number" class="form-control" name="min" value="<?php if (isset($_GET["min"])) echo $_GET["min"] ?>">
-                        </div>
-                        <div class="col-auto">
-                        ~
-                        </div>
-                        <div class="col-2">
-                            <input type="number" class="form-control" name="max" value="<?php if (isset($_GET["max"])) echo $_GET["max"]   ?>">
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-info">價錢篩選</button>
-                        </div>
-                    </div>
-                </form>
-
+        <div class="col-7">
+            &nbsp;
         </div>
         <div class="col-2">
             
-         <!-- 進階搜尋的連結 -->
-            <div class="py-2">
-                        <!-- 連結連結連結 -->
-                        <a class="btn btn-info"href="album-search-form-yhhung.php">進階搜尋</a>
-                    </div>
+
         </div>
 
-        <div class="col-1  ">
+        <div class="col-1">
                             <!-- test -->
             <div class="btn-group ">
     <!-- 連結連結連結*8 -->
