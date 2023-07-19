@@ -71,14 +71,14 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
             排序條件
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=1">id升冪</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=2">id降冪</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=3">折扣升冪</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=4">折扣降冪</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=5">有效日期升冪</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=6">有效日期降冪</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=7">啟用</a></li>
-            <li><a class="dropdown-item" href="discountIndex_Ch.php?type=8">停用</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?<?php if (isset($countPerPage)) {echo "countPerPage=$countPerPage";} ?>&type=1">id升冪</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?<?php if (isset($countPerPage)) {echo "countPerPage=$countPerPage";} ?>&type=2">id降冪</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?<?php if (isset($countPerPage)) {echo "countPerPage=$countPerPage";} ?>&type=3">折扣升冪</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?<?php if (isset($countPerPage)) {echo "countPerPage=$countPerPage";} ?>&type=4">折扣降冪</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?<?php if (isset($countPerPage)) {echo "countPerPage=$countPerPage";} ?>&type=5">有效日期升冪</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?<?php if (isset($countPerPage)) {echo "countPerPage=$countPerPage";} ?>&type=6">有效日期降冪</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?<?php if (isset($countPerPage)) {echo "countPerPage=$countPerPage";} ?>&type=7">啟用</a></li>
+            <li><a class="dropdown-item" href="discountIndex_Ch.php?<?php if (isset($countPerPage)) {echo "countPerPage=$countPerPage";} ?>&type=8">停用</a></li>
           </ul>
         </div>
       </div>
