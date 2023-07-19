@@ -11,6 +11,8 @@ $price = $_POST["price"];
 $launch_date = $_POST["launch_date"];
 $descriptions = $_POST["descriptions"];
 
+//$descriptions = str_replace("‘", "\\", $descriptions);
+
 require_once("db_connect.php");
 
 // Check if an image file was uploaded
