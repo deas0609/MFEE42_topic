@@ -32,6 +32,9 @@
       transition: .3s ;
     }
 
+    .liActive{
+      background: linear-gradient(to right, black,white) ;
+    }
 
     nav a{
       color:black;
@@ -43,6 +46,10 @@
       font-size: 120% ;
       color:white ;
       transition: .1s ;
+    }
+
+    .aActive{
+      color:white;
     }
 
 
@@ -142,11 +149,11 @@
         mainIframe.src = manageList[index].href;
 
         for(let i=0;i<manageList.length;i++){
-          manageList[i].style.color="";
-          manageListLi[i].style.background="";
+          manageList[i].classList.remove("aActive");
+          manageListLi[i].classList.remove("liActive");
         }
-        this.style.color="white";
-        manageListLi[index].style.background="black";
+        this.classList.add("aActive");
+        manageListLi[index].classList.add("liActive");
         
       })
 
