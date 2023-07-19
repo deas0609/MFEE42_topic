@@ -18,6 +18,10 @@ if($type==1){
   $sql = "SELECT * FROM course WHERE valid=1 ORDER BY course_id ASC  LIMIT $startItem,$perPage";
 }elseif($type==2){
   $sql = "SELECT * FROM course WHERE valid=1 ORDER BY course_id DESC  LIMIT $startItem,$perPage";
+}elseif($type==3){
+  $sql = "SELECT * FROM course WHERE valid=1 ORDER BY price ASC  LIMIT $startItem,$perPage";
+}elseif($type==4){
+  $sql = "SELECT * FROM course WHERE valid=1 ORDER BY price DESC  LIMIT $startItem,$perPage";
 }
 
 // $id = $_GET["id"];
@@ -70,6 +74,8 @@ if (isset($_POST['search'])) {
             <div>
               <a href="course_Ni.php?page=<?= $page ?>&type=1" class="btn btn-info">id<i class="fa-solid fa-angles-down"></i></a>
               <a href="course_Ni.php?page=<?= $page ?>&type=2" class="btn btn-info">id<i class="fa-solid fa-angles-up"></i></a>
+              <a href="course_Ni.php?page=<?= $page ?>&type=3" class="btn btn-info">price<i class="fa-solid fa-angles-down"></i></a>
+              <a href="course_Ni.php?page=<?= $page ?>&type=4" class="btn btn-info">price<i class="fa-solid fa-angles-up"></i></a>
             </div>
           </div>
 
@@ -101,7 +107,7 @@ if (isset($_POST['search'])) {
               </td>
               <td><img class="cimg" src="images/Ni_img/<?= $row["img"] ?>" alt="圖片"></td>
               <td><?php echo $row['name']; ?></td>
-              <td class="d-inline-block text-truncate" style="max-width: 600px; height:5em"><?php echo $row['directions']; ?></td>
+              <td class="d-inline-block text-truncate" style="max-width: 550px; height:100px"><?php echo $row['directions']; ?></td>
               <td class="text-truncate"><?php echo $row['price']; ?>元</td>
               <td class="text-truncate"><?php echo $row['up_date']; ?></td>
               <td class="text-truncate"><?php echo $row['shelf_time']; ?></td>
@@ -132,7 +138,7 @@ if (isset($_POST['search'])) {
       <nav aria-label="Page navigation example">
         <ul class="pagination">
           <?php for ($i = 1; $i <= $totalPage; $i++) : ?>
-            <li class="page-item"><a class="page-link" href="course_Ni.php?page=<?= $i ?>&type=<?=$type?>"><?= $i ?></a></li>
+            <li class="page-item <?php if($i==$page) echo 'active';?>"><a class="page-link" href="course_Ni.php?page=<?= $i ?>&type=<?=$type?>"><?= $i ?></a></li>
           <?php endfor; ?>
         </ul>
       </nav>

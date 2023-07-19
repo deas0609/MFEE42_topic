@@ -36,11 +36,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
           <?php
           $course_count = $result->num_rows; ?>
           <h5>共計<?= $course_count ?>筆結果</h5>
-          <a href="add_test_Ni.php" class="btn btn-info mb-3">新增課程</a>
+          <a href="course_Ni.php" class="btn btn-info mb-3">返回首頁</a>
         </div>
         <form action="search_Ni.php">
           <div class="py-2 d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search course" aria-label="Search" name="search">
+            <input class="form-control me-2" type="search" placeholder="Search course" aria-label="Search" name="name">
             <button class="btn btn-outline-info" type="submit">Search</button>
           </div>
         </form>

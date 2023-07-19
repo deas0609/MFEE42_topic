@@ -27,16 +27,22 @@ $row = $result->fetch_assoc();
 
 <body>
     <div class="container">
+    <a href="course_Ni.php" class="btn btn-info mb-3">返回首頁</a>
         <form action="update_Ni.php" method="post">
             <thead>  
                 <input type="hidden" name="course_id" value="<?= $row["course_id"] ?>">
-                <tr>
+                <!-- <tr>
                     <th>排序</th>
                     <td><input type="text" class="form-control" value="<?= $row["course_id"]?>" name="course_id"></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <th>圖片</th>
-                    <td><input type="file" class="form-control" value="<?= $row["img"]?>" name="img"></td>
+                    
+                    <td>
+                      <img src="/MFEE42_topic/images/Ni_img/<?=$row["img"]?>" alt="<?= $row["img"]?>"width="100" height="100">  
+                      <input type="file" class="form-control"  name="new_img">
+                      <input type="hidden" name="old_img" value="<?= $row["img"] ?>">
+                    </td>
                 </tr>
                 <tr>
                      <th>課程名稱</th>

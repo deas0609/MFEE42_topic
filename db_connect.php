@@ -10,6 +10,6 @@ if($conn->connect_error){   //檢查資料庫連線
     die("連線失敗: ".$conn->connect_error);
 }else{
 // echo "連線成功";   
-//會引響到資料庫操作
+// 會引響到資料庫操作
 }
 
