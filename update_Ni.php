@@ -15,7 +15,11 @@ require_once("db_connect.php");
 
 $sql="UPDATE course SET img='$img', name='$name',directions='$directions',price='$price' ,up_date='$up_date',shelf_time='$shelf_time' WHERE course_id=$course_id";
 
+if(!empty($_FILES["img"]["tmp_name"])){
 
+}else{
+    $img=$_POST["old_img"];
+}
 
 if ($conn->query($sql) === TRUE) {
 

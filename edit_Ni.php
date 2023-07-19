@@ -36,7 +36,12 @@ $row = $result->fetch_assoc();
                 </tr> -->
                 <tr>
                     <th>圖片</th>
-                    <td><input type="file" class="form-control" value="<?= $row["img"]?>" name="img"></td>
+                    
+                    <td>
+                      <img src="/MFEE42_topic/images/Ni_img/<?=$row["img"]?>" alt="<?= $row["img"]?>"width="100" height="100">  
+                      <input type="file" class="form-control"  name="img">
+                      <input type="hidden" name="old_img" value="<?= $row["img"] ?>">
+                    </td>
                 </tr>
                 <tr>
                      <th>課程名稱</th>
