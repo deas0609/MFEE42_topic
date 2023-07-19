@@ -27,6 +27,7 @@ $row = $result->fetch_assoc();
 
 <body>
     <div class="container">
+    <a href="course_Ni.php" class="btn btn-info mb-3">返回首頁</a>
         <form action="update_Ni.php" method="post">
             <thead>  
                 <input type="hidden" name="course_id" value="<?= $row["course_id"] ?>">
