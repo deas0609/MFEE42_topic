@@ -97,18 +97,18 @@ if (isset($_GET["name"])) {
         </div>
         <div class="py-2 d-flex justify-content-between align-items-center">
 
-        <?php if (isset($_GET["name"])) : ?>
+            <?php if (isset($_GET["name"])) : ?>
                 <div>
                     共有 <?= $user_count ?> 筆符合的資料
                 </div>
             <?php endif; ?>
-            
+
         </div>
         <?php if ($user_count != 0) : ?>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>音樂祭編號ID</th>
+                        <th>編號</th>
                         <th>圖片</th>
                         <th>名稱</th>
                         <th>活動日</th>
@@ -116,6 +116,7 @@ if (isset($_GET["name"])) {
                         <th>票價</th>
                         <th>上架日</th>
                         <th>說明</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -131,18 +132,24 @@ if (isset($_GET["name"])) {
                             <td><?= $row["price"] ?></td>
                             <td><?= $row["launch_date"] ?></td>
                             <td style="overflow: hidden;">
-                            <?php
-                            $maxCharacters = 50; // 設定最大文字數
+                                <?php
+                                $maxCharacters = 50; // 設定最大文字數
 
-                            // 檢查說明欄位是否超過最大文字數
-                            if (mb_strlen($row["descriptions"]) > $maxCharacters) {
-                                $trimmedDescription = mb_substr($row["descriptions"], 0, $maxCharacters) . '...'; // 截斷說明文字並加上省略號
-                            } else {
-                                $trimmedDescription = $row["descriptions"]; // 若說明文字未超過最大文字數，則不進行截斷
-                            }
-                            echo $trimmedDescription;
-                            ?>
-                        </td>
+                                // 檢查說明欄位是否超過最大文字數
+                                if (mb_strlen($row["descriptions"]) > $maxCharacters) {
+                                    $trimmedDescription = mb_substr($row["descriptions"], 0, $maxCharacters) . '...'; // 截斷說明文字並加上省略號
+                                } else {
+                                    $trimmedDescription = $row["descriptions"]; // 若說明文字未超過最大文字數，則不進行截斷
+                                }
+                                echo $trimmedDescription;
+                                ?>
+                            </td>
+
+                            <td>
+                                <?php if ($row["statuss"] != 0) : ?>
+                                    <a href="Events-edit-MO.php?id=<?= $row["id"] ?>" class="btn btn-info mb-2">編輯</a><br>
+                        <?php endif; ?>
+
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
