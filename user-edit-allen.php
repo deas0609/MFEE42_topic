@@ -94,8 +94,8 @@ $row = $result->fetch_assoc();
             </table>
             <div class="py-2 d-flex justify-content-between">
                 <div>
-                    <button class="btn btn-info" type="submit">儲存</button>
-                    <a class="btn btn-info" href="user-allen.php?id=<?=$row["id"]?>">取消</a>
+                    <button class="btn btn-primary" type="submit">儲存</button>
+                    <a class="btn btn-secondary" href="user-allen.php?id=<?=$row["id"]?>">取消</a>
                 </div>
                 <button class="btn btn-danger" 
                 type="button"

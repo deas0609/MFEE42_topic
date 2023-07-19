@@ -10,7 +10,7 @@
 //PHP 7.0 新增的寫法
 $page = $_GET["page"] ?? 1;
 
-$type=$_GET["type"] ?? 1;
+$type = $_GET["type"] ?? 1;
 // $page=$_GET["page"];
 
 
@@ -24,23 +24,23 @@ $perPage = 5;
 $startItem = ($page - 1) * $perPage;
 
 //計算總共頁數
-$totalPage=ceil($totalUser/$perPage);
+$totalPage = ceil($totalUser / $perPage);
 
-if($type==1){
+if ($type == 1) {
     // $sql = "SELECT id, name, phone, email FROM users WHERE valid=1 ORDER BY id ASC LIMIT $startItem, $perPage"; 
-    $orderBy="ORDER BY id ASC";
-}elseif($type==2){
+    $orderBy = "ORDER BY id ASC";
+} elseif ($type == 2) {
     // $sql = "SELECT id, name, phone, email FROM users WHERE valid=1 ORDER BY id DESC LIMIT $startItem, $perPage"; 
-    $orderBy="ORDER BY id DESC";
-}elseif($type==3){
-    $orderBy="ORDER BY name ASC";
-}elseif($type==4){
-    $orderBy="ORDER BY name DESC";
-}else{
+    $orderBy = "ORDER BY id DESC";
+} elseif ($type == 3) {
+    $orderBy = "ORDER BY name ASC";
+} elseif ($type == 4) {
+    $orderBy = "ORDER BY name DESC";
+} else {
     header("location:../404.php");
 }
 
-$sql = "SELECT * FROM member WHERE status=1 $orderBy LIMIT $startItem, $perPage"; 
+$sql = "SELECT * FROM member WHERE status=1 $orderBy LIMIT $startItem, $perPage";
 
 $result = $conn->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
@@ -57,6 +57,11 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        tr:hover td{
+            background-color: #e1f5fe;
+        }
+    </style>
 </head>
 
 <body>
@@ -68,7 +73,7 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <input type="text" class="form-control" placeholder="搜尋使用者" name="name">
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-info" type="submit">搜尋</button>
+                        <button class="btn btn-outline-success" type="submit">搜尋</button>
                     </div>
                 </div>
             </form>
@@ -77,17 +82,23 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
         $user_count = $result->num_rows;
         ?>
         <div class="py-2 d-flex justify-content-between align-items-center">
-            <a class="btn btn-info" href="create-user-allen.php">新增</a>
+            <a class="btn btn-success" href="create-user-allen.php">新增使用者</a>
             <div>
                 共 <?= $totalUser ?> 人, 第 <?= $page ?> 頁
             </div>
         </div>
-        <div class="py-2 d-flex justify-content-end">
-            <div class="btn-group">
-                <a href="user-list-allen.php?page=<?= $page ?>&type=1" class="btn btn-info <?php if($type===1)echo "active"; ?>">id <i class="fa-solid fa-arrow-down-short-wide"></i></a>
-                <a href="user-list-allen.php?page=<?= $page ?>&type=2" class="btn btn-info <?php if($type===2)echo "active"; ?>">id <i class="fa-solid fa-arrow-down-wide-short"></i></i></a>
-                <a href="user-list-allen.php?page=<?= $page ?>&type=3" class="btn btn-info <?php if($type===3)echo "active"; ?>">姓名 <i class="fa-solid fa-arrow-down-short-wide"></i></a>
-                <a href="user-list-allen.php?page=<?= $page ?>&type=4" class="btn btn-info <?php if($type===4)echo "active"; ?>">姓名 <i class="fa-solid fa-arrow-down-wide-short"></i></i></a>
+        <div class="py-2 mb-3 d-flex justify-content-end">
+            <div class="mt-2 mx-2">
+                <a href="user-list-allen.php?page=<?= $page ?>&type=1" class="btn btn-primary <?php if ($type === 1) echo "active"; ?>">id <i class="fa-solid fa-arrow-down-short-wide"></i></a>
+            </div>
+            <div class="mt-2 mx-2">
+                <a href="user-list-allen.php?page=<?= $page ?>&type=2" class="btn btn-primary <?php if ($type === 2) echo "active"; ?>">id <i class="fa-solid fa-arrow-down-wide-short"></i></i></a>
+            </div>
+            <div class="mt-2 mx-2">
+                <a href="user-list-allen.php?page=<?= $page ?>&type=3" class="btn btn-primary <?php if ($type === 3) echo "active"; ?>">姓名 <i class="fa-solid fa-arrow-down-short-wide"></i></a>
+            </div>
+            <div class="mt-2 mx-2">
+                <a href="user-list-allen.php?page=<?= $page ?>&type=4" class="btn btn-primary <?php if ($type === 4) echo "active"; ?>">姓名 <i class="fa-solid fa-arrow-down-wide-short"></i></i></a>
             </div>
         </div>
         <?php
@@ -120,19 +131,21 @@ $rows = $result->fetch_all(MYSQLI_ASSOC);
                         <td><?= $row["address"] ?></td>
                         <td><?= $row["phone"] ?></td>
                         <td>
-                            <a href="user-allen.php?id=<?= $row["id"] ?>" class="btn btn-info">顯示</a>
+                            <a href="user-allen.php?id=<?= $row["id"] ?>" class="btn btn-primary">顯示</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
         <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <?php for($i=1; $i<=$totalPage; $i++): ?>
-                <li class="page-item <?php
-                    if($i==$page)echo "active";
-                    ?>"><a class="page-link " href="user-list-allen.php?page=<?=$i?>&type=<?=$type?>"><?=$i?></a></li>
+            <ul class="pt-4 pagination">
+                
+                <?php for ($i = 1; $i <= $totalPage; $i++) : ?>
+                    <li class="page-item <?php
+                                            if ($i == $page) echo "active";
+                                            ?>"><a class="page-link " href="user-list-allen.php?page=<?= $i ?>&type=<?= $type ?>"><?= $i ?></a></li>             
                 <?php endfor; ?>
+                
             </ul>
         </nav>
     </div>
