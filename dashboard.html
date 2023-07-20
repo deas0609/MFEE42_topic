@@ -1,15 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title>Dashboard</title>
   <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
   <!-- Bootstrap CSS v5.2.1 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -27,32 +27,30 @@
       width: var(--aside-width);
     }
 
-    nav li:hover{
-      background: linear-gradient(to right, black,white) ;
-      transition: .3s ;
+    nav li:hover {
+      background: linear-gradient(to right, black, white);
+      transition: 0.3s;
     }
 
-    .liActive{
-      background: linear-gradient(to right, black,white) ;
+    .liActive {
+      background: linear-gradient(to right, black, white);
     }
 
-    nav a{
-      color:black;
+    nav a {
+      color: black;
       font-size: 100%;
-      text-shadow:50px ;
+      text-shadow: 50px;
     }
 
-    nav a:hover{
-      font-size: 120% ;
-      color:white ;
-      transition: .1s ;
+    nav a:hover {
+      font-size: 120%;
+      color: white;
+      transition: 0.1s;
     }
 
-    .aActive{
-      color:white;
+    .aActive {
+      color: white;
     }
-
-
 
     .main-aside {
       width: var(--aside-width);
@@ -68,17 +66,14 @@
       height: 400px;
     }
   </style>
-
 </head>
 
 <body>
   <header class="text-bg-dark d-flex shadow fixed-top justify-content-between align-items-center">
     <a class="bg-black py-3 px-3 text-decoration-none link-light brand-name" href=""><img class="header_logo"
-        src="images/LOGO/白橫向.svg" alt=""></a>
+        src="images/LOGO/白橫向.svg" alt="" /></a>
     <div class="d-flex align-items-center">
-      <div class="me-3">
-
-      </div>
+      <div class="me-3"></div>
       <a href="" class="btn btn-dark me-3"><i class="fa-solid fa-right-to-bracket fa-fw"></i> Logout</a>
     </div>
   </header>
@@ -122,45 +117,37 @@
 
   <main class="main-content vh-100">
     <iframe id="mainIframe" class="w-100 h-100 pt-3" src="mainPage.php" frameborder="0">
-     
     </iframe>
   </main>
 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
 
   <script>
     const manageList = document.querySelectorAll(".main-aside li a");
-    const manageListLi=document.querySelectorAll(".main-aside li");
+    const manageListLi = document.querySelectorAll(".main-aside li");
     const mainIframe = document.querySelector("#mainIframe");
 
-
-
     manageList.forEach(function (manage, index) {
-      
       manageList[index].addEventListener("click", function (event) {
         event.preventDefault();
         mainIframe.src = manageList[index].href;
 
-        for(let i=0;i<manageList.length;i++){
+        for (let i = 0; i < manageList.length; i++) {
           manageList[i].classList.remove("aActive");
           manageListLi[i].classList.remove("liActive");
         }
         this.classList.add("aActive");
         manageListLi[index].classList.add("liActive");
-        
-      })
-
+      });
     });
-
   </script>
-
 </body>
 
 </html>
